@@ -1,0 +1,30 @@
+<h3 class="text-center text-purple mt-4 mb-3">Employee Details</h3>
+
+<div class="card employee-card mx-auto">
+    <div class="card-body">
+        <div class="row mb-2">
+            <div class="col-4 fw-bold">ID:</div>
+            <div class="col-8">{{employee.id}}</div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-4 fw-bold">Name:</div>
+            <div class="col-8">{{employee.name}}</div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-4 fw-bold">Email:</div>
+            <div class="col-8">{{employee.email}}</div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-4 fw-bold">Phone:</div>
+            <div class="col-8">{{employee.phone}}</div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-4 fw-bold">Department:</div>
+            <div class="col-8">{{employee.dept}}</div>
+        </div>
+
+        <div class="text-center mt-4">
+            <button class="btn btn-light px-4 fw-bold" (click)="gotoList()">Back</button>
+        </div>
+    </div>
+</div>
