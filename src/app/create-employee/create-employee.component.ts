@@ -18,7 +18,7 @@ export class CreateEmployeeComponent implements OnInit {
     private fb: FormBuilder,
     private employeeService: EmployeeService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.profileForm = this.fb.group({

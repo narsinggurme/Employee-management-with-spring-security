@@ -11,8 +11,8 @@ import { EmployeeService } from '../employee.service';
 })
 export class EmployeeDetailsComponent implements OnInit {
   id!: number;
-  employee !: Employee;
-  constructor(private route: ActivatedRoute, private employeeService: EmployeeService, private router : Router) { }
+  employee: Employee = new Employee();
+  constructor(private route: ActivatedRoute, private employeeService: EmployeeService, private router: Router) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -20,8 +20,7 @@ export class EmployeeDetailsComponent implements OnInit {
       this.employee = data;
     });
   }
-  gotoList()
-  {
+  gotoList() {
     this.router.navigate([`/employees`]);
   }
 }
