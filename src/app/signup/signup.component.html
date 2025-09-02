@@ -1,9 +1,43 @@
-<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-    <input formControlName="username" placeholder="Username" />
-    <input formControlName="password" placeholder="Password" type="password" />
-    <select formControlName="roles">
-        <option value="NORMAL">Normal</option>
-        <option value="ADMIN">Admin</option>
-    </select>
-    <button type="submit">Sign Up</button>
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="container mt-5" style="max-width: 400px;">
+    <h2 class="text-center mb-4">Sign Up</h2>
+
+    <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" id="username" formControlName="username" class="form-control"
+            placeholder="Enter your username" />
+        <div *ngIf="signupForm.get('username')?.touched && signupForm.get('username')?.invalid"
+            class="text-danger mt-1">
+            Username is required
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" formControlName="password" class="form-control"
+            placeholder="Enter your password" />
+        <div *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.invalid"
+            class="text-danger mt-1">
+            Password is required
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" class="form-control" formControlName="email" placeholder="Enter email" />
+    </div>
+
+    <div class="mb-3">
+        <label for="roles" class="form-label">Role</label>
+        <select id="roles" formControlName="roles" class="form-select">
+            <option value="NORMAL">Normal</option>
+            <option value="ADMIN">Admin</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100" [disabled]="signupForm.invalid">
+        Sign Up
+    </button>
+
+    <div class="text-center mt-3">
+        Already have an account? <a routerLink="/login">Login here</a>
+    </div>
 </form>
