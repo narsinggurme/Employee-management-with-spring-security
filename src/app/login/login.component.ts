@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthServiceService } from '../auth-service.service';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AppAuthService } from '../app-auth.service';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthServiceService,
+    private authState: AppAuthService,
     private router: Router
   ) { }
 
@@ -36,6 +38,7 @@ export class LoginComponent implements OnInit {
       this.authService.login(username, password).subscribe({
         next: (res) => {
           console.log("Login success", res);
+          this.authState.login();
           this.router.navigate(['/employees']);
         },
         error: (err) => {
