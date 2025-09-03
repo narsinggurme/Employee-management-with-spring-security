@@ -5,15 +5,16 @@ import { UpdateEmployeeComponent } from './update-employee/update-employee.compo
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { authGuard } from './auth.guard';
 
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
-    { path: 'employees', component: EmployeeListComponent },
-    { path: 'create-employee', component: CreateEmployeeComponent },
+    { path: 'employees', component: EmployeeListComponent, canActivate: [authGuard] },
+    { path: 'create-employee', component: CreateEmployeeComponent, canActivate: [authGuard] },
     { path: 'update-employee/:id', component: UpdateEmployeeComponent },
     { path: 'employee-details/:id', component: EmployeeDetailsComponent },
-    { path: '', redirectTo: '/login', pathMatch: 'full' } // default redirect to login
+    { path: '', redirectTo: '/login', pathMatch: 'full' }
 
 ];

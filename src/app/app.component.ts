@@ -15,6 +15,9 @@ export class AppComponent {
   title = 'Demo Project';
   constructor(public authState: AppAuthService, private router: Router) { }
 
+  ngOnInit() {
+    this.authState.restoreSession();
+  }
   logout() {
     this.authState.logout();
     this.router.navigate(['/login']);
