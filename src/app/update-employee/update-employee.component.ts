@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { EmployeeService } from '../employee.service';
 import { Employee } from '../employee';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-update-employee',
-  templateUrl: './update-employee.component.html',
-  styleUrls: ['./update-employee.component.css'],  
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule] 
+  imports: [ReactiveFormsModule, CommonModule],
+  templateUrl: './update-employee.component.html',
+  styleUrls: ['./update-employee.component.css'],
 })
 export class UpdateEmployeeComponent implements OnInit {
   id!: number;
@@ -28,7 +28,7 @@ export class UpdateEmployeeComponent implements OnInit {
     this.employeeService.getEmployeeByid(this.id).subscribe({
       next: (data) => {
         this.empForm = this.fb.group({
-          id: [data.id],  
+          id: [data.id],
           name: [data.name, [Validators.required, Validators.minLength(3)]],
           email: [data.email, [Validators.required, Validators.email]],
           phone: [data.phone, [Validators.required, Validators.pattern(/^[7-9]\d{9}$/)]],
@@ -42,8 +42,7 @@ export class UpdateEmployeeComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.empForm.valid)
-      {
+    if (this.empForm.valid) {
       const updatedEmp: Employee = {
         ...this.empForm.getRawValue(),
         id: this.id
@@ -52,8 +51,7 @@ export class UpdateEmployeeComponent implements OnInit {
         this.gotoEmployeeList();
       });
     }
-     else
-    {
+    else {
       this.empForm.markAllAsTouched();
     }
   }
