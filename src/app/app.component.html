@@ -8,6 +8,8 @@
                 <li class="nav-item">
                     <a routerLink="create-employee" routerLinkActive="active" class="nav-link">Add Employee</a>
                 </li>
+            </ul>
+            <ul class="navbar-nav ms-auto" *ngIf="authState.isLoggedIn()">
                 <li class="nav-item">
                     <button (click)="logout()" class="btn btn-outline-light me-2">Logout</button>
                 </li>
