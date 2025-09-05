@@ -19,7 +19,7 @@ export class SignupComponent {
       username: ['', Validators.required],
       password: ['', Validators.required],
       roles: ['NORMAL', Validators.required],
-      email: ['', Validators.email]
+      email: ['', [Validators.required, Validators.email]]
     });
   }
 

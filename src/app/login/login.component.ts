@@ -43,6 +43,11 @@ export class LoginComponent implements OnInit {
         },
         error: (err) => {
           console.error("❌ Login failed", err);
+          if (err.status === 401) {
+            alert("Incorrect username or password!");
+          } else {
+            alert("Something went wrong. Try again later.");
+          }
         }
       });
     }
