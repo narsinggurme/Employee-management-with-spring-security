@@ -11,15 +11,23 @@ export class AuthServiceService {
   private password: string = '';
   constructor(private http: HttpClient) { }
 
+  // login(username: string, password: string): Observable<any> {
+  //   this.username = username;
+  //   this.password = password;
+
+  //   const headers = new HttpHeaders({
+  //     Authorization: 'Basic ' + btoa(username + ":" + password)
+  //   });
+
+  //   return this.http.get(this.loginUrl, { headers });
+  // }
+
   login(username: string, password: string): Observable<any> {
     this.username = username;
     this.password = password;
 
-    const headers = new HttpHeaders({
-      Authorization: 'Basic ' + btoa(username + ":" + password)
-    });
-
-    return this.http.get(this.loginUrl, { headers });
+    // POST credentials in request body
+    return this.http.post(this.loginUrl, { username, password });
   }
 
   getAuthHeaders(): HttpHeaders {

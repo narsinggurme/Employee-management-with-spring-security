@@ -42,10 +42,14 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/employees']);
         },
         error: (err) => {
-          console.error("❌ Login failed", err);
-          if (err.status === 401) {
+          console.error("Login failed", err);
+          if (err.status === 404) {
             alert("Incorrect username or password!");
-          } else {
+          }
+          else if (err.status === 403) {
+            alert("you don't have access of this page!");
+          }
+          else {
             alert("Something went wrong. Try again later.");
           }
         }
