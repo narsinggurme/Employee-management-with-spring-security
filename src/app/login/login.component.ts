@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthServiceService } from '../auth-service.service';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AppAuthService } from '../app-auth.service';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -21,7 +23,9 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthServiceService,
     private authState: AppAuthService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -44,7 +48,11 @@ export class LoginComponent implements OnInit {
         error: (err) => {
           console.error("Login failed", err);
           if (err.status === 404) {
-            alert("Incorrect username or password!");
+            this.snackBar.open('Incorrect username or password!', 'Close', {
+              duration: 3000,
+              horizontalPosition: 'center',
+              verticalPosition: 'top'
+            });
           }
           else if (err.status === 403) {
             alert("you don't have access of this page!");
@@ -55,5 +63,20 @@ export class LoginComponent implements OnInit {
         }
       });
     }
+  }
+  openForgotPassword() {
+    const dialogRef = this.dialog.open(ForgotPasswordComponent, {
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.snackBar.open('Password reset successful!', 'Close', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top'
+        });
+      }
+    });
   }
 }
