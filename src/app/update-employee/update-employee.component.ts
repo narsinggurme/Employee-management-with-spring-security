@@ -16,6 +16,7 @@ export class UpdateEmployeeComponent implements OnInit {
   id!: number;
   empForm!: FormGroup;
 
+
   constructor(
     private employeeService: EmployeeService,
     private routes: ActivatedRoute,
@@ -24,6 +25,18 @@ export class UpdateEmployeeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // We initialize empForm here with empty controls and validators
+    // so that the template ([formGroup]) always has a valid FormGroup
+    // instance from the start. This avoids runtime errors (NG01052)
+    // and ensures validators are applied before API data is patched in.
+    this.empForm = this.fb.group({
+      id: [null],
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required, Validators.pattern(/^[7-9]\d{9}$/)]],
+      dept: ['', [Validators.required]]
+    });
+
     this.id = this.routes.snapshot.params['id'];
     this.employeeService.getEmployeeByid(this.id).subscribe({
       next: (data) => {

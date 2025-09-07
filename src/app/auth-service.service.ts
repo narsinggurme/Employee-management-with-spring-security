@@ -1,42 +1,43 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
   private loginUrl = "http://localhost:8081/api/v1/login";
-  private username: string = '';
-  private password: string = '';
+  private tokenKey = "auth_token";  // localStorage key
+
   constructor(private http: HttpClient) { }
 
-  // login(username: string, password: string): Observable<any> {
-  //   this.username = username;
-  //   this.password = password;
-
-  //   const headers = new HttpHeaders({
-  //     Authorization: 'Basic ' + btoa(username + ":" + password)
-  //   });
-
-  //   return this.http.get(this.loginUrl, { headers });
-  // }
-
   login(username: string, password: string): Observable<any> {
-    this.username = username;
-    this.password = password;
+    return this.http.post<any>(this.loginUrl, { username, password }).pipe(
+      tap(response => {
+        if (response && response.token) {
+          localStorage.setItem(this.tokenKey, response.token);
+        }
+      })
+    );
+  }
 
-    // POST credentials in request body
-    return this.http.post(this.loginUrl, { username, password });
+  getToken(): string | null {
+    return localStorage.getItem(this.tokenKey);
   }
 
   getAuthHeaders(): HttpHeaders {
+    const token = this.getToken();
     return new HttpHeaders({
-      Authorization: 'Basic ' + btoa(this.username + ":" + this.password)
+      Authorization: token ? `Bearer ${token}` : ''
     });
   }
 
-  logout(): Observable<any> {
-    return this.http.post('http://localhost:8081/logout', {}, { withCredentials: true });
+  logout(): void {
+    localStorage.removeItem(this.tokenKey);
+  }
+
+  isLoggedIn(): boolean {
+    return !!this.getToken();
   }
 }

@@ -13,26 +13,6 @@ export class EmployeeService {
 
   constructor(private http: HttpClient, private authService: AuthServiceService) { }
 
-  // getEmployees(): Observable<Employee[]> {
-  //   return this.http.get<Employee[]>(this.baseUrl);
-  // }
-
-  // createEmployee(employee: Employee): Observable<object> {
-  //   return this.http.post(this.postUrl, employee);
-  // }
-
-  // getEmployeeByid(id: number): Observable<Employee> {
-  //   return this.http.get<Employee>(`${this.baseUrl}/${id}`);
-  // }
-
-  // updateEmployee(id: number, employee: Employee): Observable<Object> {
-  //   return this.http.put(`${this.baseUrl}/${id}`, employee);
-  // }
-
-  // deleteEmployeeByid(id: number): Observable<void> {
-  //   return this.http.delete<void>(`${this.baseUrl}/${id}`);
-  // }
-
   getEmployees(): Observable<Employee[]> {
     return this.http.get<Employee[]>(this.baseUrl, { headers: this.authService.getAuthHeaders() });
   }
