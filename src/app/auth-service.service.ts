@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -24,13 +24,6 @@ export class AuthServiceService {
 
   getToken(): string | null {
     return localStorage.getItem(this.tokenKey);
-  }
-
-  getAuthHeaders(): HttpHeaders {
-    const token = this.getToken();
-    return new HttpHeaders({
-      Authorization: token ? `Bearer ${token}` : ''
-    });
   }
 
   logout(): void {
