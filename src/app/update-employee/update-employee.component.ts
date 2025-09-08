@@ -15,8 +15,6 @@ import { CommonModule } from '@angular/common';
 export class UpdateEmployeeComponent implements OnInit {
   id!: number;
   empForm!: FormGroup;
-
-
   constructor(
     private employeeService: EmployeeService,
     private routes: ActivatedRoute,

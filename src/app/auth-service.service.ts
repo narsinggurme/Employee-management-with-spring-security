@@ -8,7 +8,7 @@ import { tap } from 'rxjs/operators';
 })
 export class AuthServiceService {
   private loginUrl = "http://localhost:8081/api/v1/login";
-  private tokenKey = "auth_token";  // localStorage key
+  private tokenKey = "jwt_token";
 
   constructor(private http: HttpClient) { }
 
