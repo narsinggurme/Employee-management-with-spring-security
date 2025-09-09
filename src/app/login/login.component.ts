@@ -43,7 +43,8 @@ export class LoginComponent implements OnInit {
         next: (res) => {
           console.log("Login success", res);
           if (res.token) {
-            localStorage.setItem('auth_token', res.token);
+            localStorage.setItem('access_token', res.accessToken);
+            localStorage.setItem('refresh_token', res.refreshToken);
           }
           this.authState.login(username);
           this.router.navigate(['/employees']);
