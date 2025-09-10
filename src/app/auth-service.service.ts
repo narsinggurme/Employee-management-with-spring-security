@@ -36,16 +36,14 @@ export class AuthServiceService {
     return localStorage.getItem('refresh_token');
   }
 
-  refreshToken(refreshToken: string) {
-    return this.http.post<any>(this.refreshUrl, { refreshToken })
-      .pipe(
-        switchMap(res => {
-          if (res.accessToken) {
-            localStorage.setItem('access_token', res.accessToken);
-          }
-          return [res.accessToken];
-        })
-      );
+  refreshToken(refreshToken: string): Observable<any> {
+    return this.http.post<any>(this.refreshUrl, { refreshToken }).pipe(
+      tap(res => {
+        if (res.accessToken) {
+          localStorage.setItem('access_token', res.accessToken);
+        }
+      })
+    );
   }
 
   logout() {

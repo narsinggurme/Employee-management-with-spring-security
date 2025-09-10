@@ -51,12 +51,8 @@ export class LoginComponent implements OnInit {
         },
         error: (err) => {
           console.error("Login failed", err);
-          if (err.status === 404) {
-            this.snackBar.open('Incorrect username or password!', 'Close', {
-              duration: 3000,
-              horizontalPosition: 'center',
-              verticalPosition: 'top'
-            });
+          if (err.status === 401) {
+            alert('Incorrect username or password!')
           }
           else if (err.status === 403) {
             alert("you don't have access of this page!");
