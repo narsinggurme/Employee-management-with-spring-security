@@ -8,20 +8,20 @@
                 <li class="nav-item">
                     <a routerLink="#" routerLinkActive="active" class="nav-link">About</a>
                 </li>
-                <li class=" nav-item" *ngIf="authState.isLoggedIn()">
+                <li class=" nav-item" *ngIf="authservice.isLoggedIn()">
                     <a routerLink="employees" routerLinkActive="active" class="nav-link">Employee List</a>
                 </li>
-                <li class="nav-item" *ngIf="authState.isLoggedIn()">
+                <li class="nav-item" *ngIf="authservice.isLoggedIn()">
                     <a routerLink="create-employee" routerLinkActive="active" class="nav-link">Add Employee</a>
                 </li>
             </ul>
-            <ul class="navbar-nav ms-auto" *ngIf="authState.isLoggedIn()">
+            <ul class="navbar-nav ms-auto" *ngIf="authservice.isLoggedIn()">
                 <li class="nav-item">
-                    <button (click)="logout()" class="btn btn-outline-light me-2">Logout</button>
+                    <button (click)="onLogout()" class="btn btn-outline-light me-2">Logout</button>
                 </li>
             </ul>
 
-            <ul class="navbar-nav ms-auto" *ngIf="!authState.isLoggedIn()">
+            <ul class="navbar-nav ms-auto" *ngIf="!authservice.isLoggedIn()">
                 <li class="nav-item">
                     <a routerLink="login" routerLinkActive="active" class="btn btn-outline-light me-2">Login</a>
                 </li>

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { AuthServiceService } from './auth-service.service';
-import { AppAuthService } from './app-auth.service';
+import { AuthService } from './auth-service.service';
 
 @Component({
   selector: 'app-root',
@@ -13,13 +12,26 @@ import { AppAuthService } from './app-auth.service';
 })
 export class AppComponent {
   title = 'Demo Project';
-  constructor(public authState: AppAuthService, private router: Router) { }
+  constructor(public authservice: AuthService, private router: Router) { }
 
   ngOnInit() {
-    this.authState.restoreSession();
+    if (this.authservice.isLoggedIn()) {
+      this.router.navigate(['/employees'])
+    }
+    this.authservice.restoreSession();
   }
-  logout() {
-    this.authState.logout();
-    this.router.navigate(['/login']);
+  onLogout(): void {
+    this.authservice.logout().subscribe({
+      next: (res) => {
+        console.log("Logout API response:", res);
+        alert(res.message || "Logged out successfully!");
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        console.error("Logout failed:", err);
+        alert("Something went wrong while logging out.");
+      }
+    });
   }
+
 }

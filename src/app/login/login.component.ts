@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { AuthServiceService } from '../auth-service.service';
+import { AuthService } from '../auth-service.service';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AppAuthService } from '../app-auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
@@ -21,14 +20,17 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthServiceService,
-    private authState: AppAuthService,
+    private authService: AuthService,
     private router: Router,
     private snackBar: MatSnackBar,
     private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/employees'])
+    }
+
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
       password: ['', [Validators.required, Validators.minLength(4)]]
@@ -46,7 +48,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('access_token', res.accessToken);
             localStorage.setItem('refresh_token', res.refreshToken);
           }
-          this.authState.login(username);
+          this.authService.login(username, password);
           this.router.navigate(['/employees']);
         },
         error: (err) => {
@@ -56,6 +58,9 @@ export class LoginComponent implements OnInit {
           }
           else if (err.status === 403) {
             alert("you don't have access of this page!");
+          }
+          else if (err.status == 409) {
+            alert('User already logged in from another device')
           }
           else {
             alert("Something went wrong. Try again later.");
