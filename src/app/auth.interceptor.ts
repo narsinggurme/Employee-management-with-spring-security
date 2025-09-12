@@ -9,8 +9,8 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
 
   const token = authService.getAccessToken();
-
   let authReq = req;
+
   if (token) {
     authReq = req.clone({
       setHeaders: { Authorization: `Bearer ${token}` }
@@ -20,10 +20,8 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   return next(authReq).pipe(
     catchError((error: HttpErrorResponse) => {
       if (error.status === 401 || error.status === 403) {
-        const refreshToken = authService.getRefreshToken();
-
-        if (refreshToken) {
-          return authService.refreshToken(refreshToken).pipe(
+        if (authService.getRefreshToken()) {
+          return authService.refreshToken().pipe(
             switchMap((res: any) => {
               const newToken = res.accessToken;
               if (newToken) {
@@ -32,19 +30,19 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
                 });
                 return next(newReq);
               } else {
-                authService.clearTokens();
+                authService.clearSession();
                 router.navigate(['/login']);
                 return throwError(() => error);
               }
             }),
             catchError(err => {
-              authService.clearTokens();
+              authService.clearSession();
               router.navigate(['/login']);
               return throwError(() => err);
             })
           );
         } else {
-          authService.clearTokens();
+          authService.clearSession();
           router.navigate(['/login']);
           return throwError(() => error);
         }

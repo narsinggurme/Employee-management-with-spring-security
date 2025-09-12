@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../environments/environment';
+import { Router } from '@angular/router';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,55 +15,52 @@ export class AuthService {
   private loggedIn = false;
   private currentUser: string | null = null;
 
-  constructor(private http: HttpClient) {
+  private inactivityTimer: any;
+  private readonly INACTIVITY_LIMIT = 10 * 60 * 1000;
+
+  constructor(private http: HttpClient, private router: Router) {
     this.restoreSession();
+    this.startInactivityWatcher();
+    privrouter: Router
   }
 
   login(username: string, password: string): Observable<any> {
     return this.http.post<any>(this.loginUrl, { username, password }).pipe(
-      tap(response => {
-        if (response) {
-          if (response.accessToken) {
-            localStorage.setItem('access_token', response.accessToken);
-          }
-          if (response.refreshToken) {
-            localStorage.setItem('refresh_token', response.refreshToken);
-          }
+      tap(res => {
+        if (res.accessToken && res.refreshToken) {
+          localStorage.setItem('access_token', res.accessToken);
+          localStorage.setItem('refresh_token', res.refreshToken);
           localStorage.setItem('username', username);
 
           this.loggedIn = true;
           this.currentUser = username;
+          this.resetInactivityTimer();
         }
       })
     );
   }
 
-  refreshToken(refreshToken: string): Observable<{ accessToken: string }> {
-    return this.http.post<{ accessToken: string }>(this.refreshUrl, { refreshToken }).pipe(
+
+  refreshToken(): Observable<any> {
+    const refreshToken = localStorage.getItem('refresh_token');
+    return this.http.post<any>(this.refreshUrl, { refreshToken }).pipe(
       tap(res => {
         if (res.accessToken) {
           localStorage.setItem('access_token', res.accessToken);
         }
+        if (res.refreshToken) {
+          localStorage.setItem('refresh_token', res.refreshToken);
+        }
+        this.resetInactivityTimer();
       })
     );
-  }
-
-  getAccessToken(): string | null {
-    return localStorage.getItem('access_token');
-  }
-
-  getRefreshToken(): string | null {
-    return localStorage.getItem('refresh_token');
   }
 
   logout(): Observable<any> {
     const username = localStorage.getItem('username');
     return this.http.post<any>(this.logoutUrl, { username }).pipe(
       tap(() => {
-        this.loggedIn = false;
-        this.currentUser = null;
-        localStorage.clear();
-        sessionStorage.clear();
+        this.clearSession();
       })
     );
   }
@@ -74,17 +73,48 @@ export class AuthService {
     return this.currentUser;
   }
 
-  public restoreSession(): void {
+  getAccessToken(): string | null {
+    return localStorage.getItem('access_token');
+  }
+
+  getRefreshToken(): string | null {
+    return localStorage.getItem('refresh_token');
+  }
+
+  restoreSession(): void {
     const token = localStorage.getItem('access_token');
     const username = localStorage.getItem('username');
     if (token && username) {
       this.loggedIn = true;
       this.currentUser = username;
+      this.resetInactivityTimer();
     }
   }
 
-  public clearTokens(): void {
+  clearSession(): void {
     localStorage.clear();
     sessionStorage.clear();
+    this.loggedIn = false;
+    this.currentUser = null;
+    this.clearInactivityTimer();
+  }
+
+  private resetInactivityTimer() {
+    this.clearInactivityTimer();
+    this.inactivityTimer = setTimeout(() => {
+      this.clearSession();
+      window.location.href = '/login';
+      alert('You have been logged out due to inactivity.');
+    }, this.INACTIVITY_LIMIT);
+  }
+
+  private clearInactivityTimer() {
+    if (this.inactivityTimer) clearTimeout(this.inactivityTimer);
+  }
+
+  private startInactivityWatcher() {
+    ['mousemove', 'keydown', 'click'].forEach(event => {
+      window.addEventListener(event, () => this.resetInactivityTimer());
+    });
   }
 }
