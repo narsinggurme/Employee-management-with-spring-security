@@ -5,6 +5,7 @@ export const environment = {
     baseUrl: "http://localhost:8081/api/v1/employees",
     postUrl: "http://localhost:8081/api/v1/empl",
     refreshUrl: "http://localhost:8081/api/v1/refresh",
-    logoutUrl: "http://localhost:8081/api/v1/logout"
+    logoutUrl: "http://localhost:8081/api/v1/logout",
+    forgotPassword: "http://localhost:8081/api/v1/forgot-password"
 
 };
