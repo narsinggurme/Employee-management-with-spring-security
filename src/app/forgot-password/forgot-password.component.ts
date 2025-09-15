@@ -50,32 +50,37 @@ export class ForgotPasswordComponent implements OnInit {
 
   onSubmit() {
     if (this.step === 1) {
+
+      if (this.forgotForm.invalid) {
+        this.forgotForm.markAllAsTouched();
+        return;
+      }
       this.loading = true;
 
       const username = this.forgotForm.get('username')?.value;
       this.forgotService.sendResetLink(username).subscribe({
-        // next: res => {
-        //   this.loading = false;
-        //   console.log("api respnose:" + res);
-
-        //   alert(res.message || 'Reset link sent to your email!');
-        //   this.router.navigate(['/home']);
-        // },
         next: res => {
-          console.log("api respnose:" + res);
+          console.log("api respnose:" + res.message);
           setTimeout(() => {
             this.loading = false;
             alert(res.message || 'Reset link sent to your email!');
             this.router.navigate(['/home']);
-          }, 5000);
+          }, 2000);
 
         },
         error: err => {
+          console.log("API Resopnse:" + err.error)
+          console.log("Error Message:", err.error?.message);
+          console.log("Status:", err.status);
           this.loading = false;
           alert(err.error?.message || 'Error sending reset link')
         }
       });
     } else {
+      if (this.forgotForm.invalid) {
+        this.forgotForm.markAllAsTouched();
+        return;
+      }
       const newPass = this.forgotForm.get('newPassword')?.value;
       const confirmPass = this.forgotForm.get('confirmPassword')?.value;
 
@@ -93,7 +98,7 @@ export class ForgotPasswordComponent implements OnInit {
           this.router.navigate(['/login']);
         },
         error: err => {
-          this.loading = false; // stop loader
+          this.loading = false;
           alert(err.error?.message || 'Something went wrong')
         }
       });
