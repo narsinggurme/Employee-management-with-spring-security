@@ -1,27 +1,44 @@
-<h1 class="text-center " style="color: blueviolet;">Employee Data</h1>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name </th>
-      <th>Email </th>
-      <th>Phone </th>
-      <th>Department </th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let emp of employees">
-      <td>{{ emp.id }}</td>
-      <td>{{ emp.name }}</td>
-      <td>{{ emp.email }}</td>
-      <td>{{ emp.phone }}</td>
-      <td>{{ emp.dept }}</td>
-      <td>
-        <button (click)="updateEmployee(emp.id)" class="btn btn-info">Update</button>
-        <button (click)="deleteEmployee(emp.id)" class="btn btn-danger" style="margin-left: 10px;">Delete</button>
-        <button (click)="employeeDetails(emp.id)" class="btn btn-warning" style="margin-left: 10px;">View</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="employee-list container mt-4">
+  <h2 class="text-center mb-4 page-title">👨‍💼 Employee Directory</h2>
+
+  <!-- Search Bar 
+ <div class="search-box mb-3">
+    <input type="text" class="form-control search-input" 
+      placeholder="🔍 Search employees by name, email or department..." [(ngModel)]="searchText"> 
+</div> -->
+
+  <div class="table-responsive shadow-lg rounded-4 overflow-hidden">
+    <table class="table custom-table align-middle mb-0">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Department</th>
+          <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of employees ">
+          <td>{{ emp.id }}</td>
+          <td>{{ emp.name }}</td>
+          <td>{{ emp.email }}</td>
+          <td>{{ emp.phone }}</td>
+          <td>{{ emp.dept }}</td>
+          <td class="text-center">
+            <button (click)="updateEmployee(emp.id)" class="btn btn-sm btn-update me-2">
+              ✏️ Update
+            </button>
+            <button (click)="deleteEmployee(emp.id)" class="btn btn-sm btn-delete me-2">
+              🗑️ Delete
+            </button>
+            <button (click)="employeeDetails(emp.id)" class="btn btn-sm btn-view">
+              👁️ View
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

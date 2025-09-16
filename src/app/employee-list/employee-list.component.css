@@ -1,0 +1,117 @@
+/* Title with gradient text */
+.page-title {
+    font-weight: bold;
+    font-size: 2rem;
+    background: linear-gradient(45deg, #ff9966, #ff5e62, #c471ed);
+    background-clip: text;
+    -webkit-background-clip: text;
+    /* Safari */
+    -moz-background-clip: text;
+    color: transparent;
+}
+
+/* Search Box */
+.search-box {
+    display: flex;
+    justify-content: center;
+}
+
+.search-input {
+    width: 60%;
+    border-radius: 25px;
+    padding: 12px 20px;
+    border: 1px solid #f5b7b1;
+    box-shadow: 0 3px 8px rgba(255, 94, 98, 0.2);
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #ff5e62;
+    box-shadow: 0 5px 15px rgba(255, 94, 98, 0.35);
+}
+
+/* Table */
+.custom-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    background: #fff;
+}
+
+.custom-table thead {
+    background: linear-gradient(135deg, #ff9966, #ff5e62, #c471ed);
+    background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding-box;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.custom-table th,
+.custom-table td {
+    padding: 15px;
+    vertical-align: middle;
+}
+
+.custom-table tbody tr:nth-child(even) {
+    background-color: #fff6f5;
+}
+
+.custom-table tbody tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.custom-table tbody tr:hover {
+    background: #ffe6e6;
+    transform: scale(1.01);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Buttons */
+.btn-update {
+    background: linear-gradient(to right, #f7971e, #ffd200);
+    background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+}
+
+.btn-update:hover {
+    box-shadow: 0 4px 12px rgba(247, 151, 30, 0.4);
+    transform: scale(1.05);
+}
+
+.btn-delete {
+    background: linear-gradient(to right, #ff5e62, #ff9966);
+    background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+}
+
+.btn-delete:hover {
+    box-shadow: 0 4px 12px rgba(255, 94, 98, 0.4);
+    transform: scale(1.05);
+}
+
+.btn-view {
+    background: linear-gradient(to right, #c471ed, #f64f59);
+    background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+}
+
+.btn-view:hover {
+    box-shadow: 0 4px 12px rgba(196, 113, 237, 0.4);
+    transform: scale(1.05);
+}

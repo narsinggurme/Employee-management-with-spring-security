@@ -1,41 +1,53 @@
-<div class="col-md-5 offset-md-3">
-    <h3>Update Employee here...</h3>
-    <div>
+<div class="update-employee-wrapper">
+    <div class="update-employee-card">
+        <h3 class="update-title text-center mb-4">Update Employee Details</h3>
+
         <form (ngSubmit)="onSubmit()" [formGroup]="empForm">
-            <div class="col-4 fw-bold">ID:</div>
-            <div class="col-8">
-                <input class="form-control" formControlName="id" readonly />
+            <!-- ID -->
+            <div class="form-group mb-3">
+                <label class="fw-bold">ID:</label>
+                <input class="form-control" formControlName="id" readonly>
             </div>
-            <div class="form-group">
+
+            <!-- Name -->
+            <div class="form-group mb-3">
                 <label class="fw-bold">Full Name:</label>
                 <input class="form-control" formControlName="name">
-                <span class="text-danger" *ngIf="empForm.get('name')?.touched &&  empForm.get('name')?.invalid">
-                    Name is required and must be atleast 3 charecters.
+                <span class="text-danger" *ngIf="empForm.get('name')?.touched && empForm.get('name')?.invalid">
+                    Name is required (min 3 chars).
                 </span>
             </div>
-            <div class="form-group">
-                <label class="fw-bold" >Email Id:</label>
-                <input type="text" class="form-control" formControlName="email">
-                <small class="text-danger" *ngIf="empForm.get('email')?.touched && empForm.get('email')?.invalid">
-                    Email is required.
-                </small>
+
+            <!-- Email -->
+            <div class="form-group mb-3">
+                <label class="fw-bold">Email Id:</label>
+                <input type="email" class="form-control" formControlName="email">
+                <span class="text-danger" *ngIf="empForm.get('email')?.touched && empForm.get('email')?.invalid">
+                    Valid email is required.
+                </span>
             </div>
-            <div class="form-group">
+
+            <!-- Phone -->
+            <div class="form-group mb-3">
                 <label class="fw-bold">Phone No:</label>
                 <input type="text" class="form-control" formControlName="phone">
-                <small class="text-danger" *ngIf="empForm.get('phone')?.touched && empForm.get('phone')?.invalid">
-                    Valid 10-digit phone number is required.
-                </small>
+                <span class="text-danger" *ngIf="empForm.get('phone')?.touched && empForm.get('phone')?.invalid">
+                    10-digit phone number required.
+                </span>
             </div>
-            <div class="form-group">
+
+            <!-- Department -->
+            <div class="form-group mb-4">
                 <label class="fw-bold">Department:</label>
                 <input type="text" class="form-control" formControlName="dept">
-                <small class="text-danger" *ngIf="empForm.get('dept')?.touched && empForm.get('dept')?.invalid">
+                <span class="text-danger" *ngIf="empForm.get('dept')?.touched && empForm.get('dept')?.invalid">
                     Department is required.
-                </small>
+                </span>
             </div>
-            <br>
-            <button class="btn btn-success" type="submit" [disabled]="empForm.invalid">Submit</button>
+
+            <div class="text-center">
+                <button class="btn submit-btn" type="submit" [disabled]="empForm.invalid">Submit</button>
+            </div>
         </form>
     </div>
 </div>

@@ -1,0 +1,53 @@
+/* Employee Title */
+.employee-title {
+    color: #9b59b6;
+    /* purple shade */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Styles */
+.employee-card {
+    max-width: 500px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(145deg, #fdf6f0, #f4e9f3);
+    border: none;
+    padding: 25px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.employee-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Label Styles */
+.label {
+    color: #8e44ad;
+    /* deep purple */
+}
+
+/* Back Button Styles */
+.back-btn {
+    background: linear-gradient(90deg, #ff9a9e, #fad0c4);
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 50px;
+    padding: 10px 25px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.back-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .employee-card {
+        padding: 15px;
+    }
+}

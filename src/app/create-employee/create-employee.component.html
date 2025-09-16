@@ -1,39 +1,74 @@
-<div class="col-md-6 offset-md-3">
-  <h3 class="mb-3">Add Employee here...</h3>
+<div class="container mt-5">
+  <div class="card shadow-lg border-0 rounded-4 p-4 employee-form">
+    <h3 class="text-center mb-4 fw-bold text-gradient">Add New Employee</h3>
 
-  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" novalidate>
-    <div class="form-group mb-2">
-      <label>Full Name:</label>
-      <input type="text" class="form-control" formControlName="name">
-      <small *ngIf="profileForm.get('name')?.touched && profileForm.get('name')?.invalid" class="text-danger">
-        Name is required (min 3 characters).
-      </small>
-    </div>
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="row">
+        <!-- Name -->
+        <div class="col-md-6 mb-3">
+          <label class="form-label fw-semibold">Full Name</label>
+          <input type="text" class="form-control" formControlName="name" placeholder="Enter full name">
+          <small *ngIf="profileForm.get('name')?.touched && profileForm.get('name')?.invalid" class="text-danger">
+            Name is required (min 3 characters).
+          </small>
+        </div>
 
-    <div class="form-group mb-2">
-      <label>Email Id:</label>
-      <input type="email" class="form-control" formControlName="email">
-      <small *ngIf="profileForm.get('email')?.touched && profileForm.get('email')?.invalid" class="text-danger">
-        Enter a valid email address.
-      </small>
-    </div>
+        <!-- Email -->
+        <div class="col-md-6 mb-3">
+          <label class="form-label fw-semibold">Email</label>
+          <input type="email" class="form-control" formControlName="email" placeholder="Enter email address">
+          <small *ngIf="profileForm.get('email')?.touched && profileForm.get('email')?.invalid" class="text-danger">
+            Enter a valid email address.
+          </small>
+        </div>
 
-    <div class="form-group mb-2">
-      <label>Phone No:</label>
-      <input type="text" class="form-control" formControlName="phone">
-      <small *ngIf="profileForm.get('phone')?.touched && profileForm.get('phone')?.invalid" class="text-danger">
-        Enter a 10-digit phone number.
-      </small>
-    </div>
+        <!-- Phone -->
+        <div class="col-md-6 mb-3">
+          <label class="form-label fw-semibold">Phone</label>
+          <input type="text" class="form-control" formControlName="phone" placeholder="10-digit phone number">
+          <small *ngIf="profileForm.get('phone')?.touched && profileForm.get('phone')?.invalid" class="text-danger">
+            Enter a 10-digit phone number.
+          </small>
+        </div>
 
-    <div class="form-group mb-3">
-      <label>Department:</label>
-      <input type="text" class="form-control" formControlName="dept">
-      <small *ngIf="profileForm.get('dept')?.touched && profileForm.get('dept')?.invalid" class="text-danger">
-        Department is required.
-      </small>
-    </div>
+        <!-- Department -->
+        <div class="col-md-6 mb-3">
+          <label class="form-label fw-semibold">Department</label>
+          <input type="text" class="form-control" formControlName="dept" placeholder="Enter department">
+          <small *ngIf="profileForm.get('dept')?.touched && profileForm.get('dept')?.invalid" class="text-danger">
+            Department is required.
+          </small>
+        </div>
 
-    <button class="btn btn-success" type="submit" [disabled]="profileForm.invalid">Submit</button>
-  </form>
+        <!-- Designation -->
+        <div class="col-md-6 mb-3">
+          <label class="form-label fw-semibold">Designation</label>
+          <input type="text" class="form-control" formControlName="designation" placeholder="e.g., Software Engineer">
+        </div>
+
+        <!-- Salary -->
+        <div class="col-md-6 mb-3">
+          <label class="form-label fw-semibold">Salary</label>
+          <input type="number" class="form-control" formControlName="salary" placeholder="Enter salary">
+        </div>
+
+        <!-- Age -->
+        <div class="col-md-6 mb-3">
+          <label class="form-label fw-semibold">Age</label>
+          <input type="number" class="form-control" formControlName="age" placeholder="Enter age">
+        </div>
+
+        <!-- Joining Date -->
+        <div class="col-md-6 mb-3">
+          <label class="form-label fw-semibold">Joining Date</label>
+          <input type="date" class="form-control" formControlName="joiningDate">
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button class="btn btn-gradient w-100 fw-semibold mt-3" type="submit" [disabled]="profileForm.invalid">
+        ➕ Add Employee
+      </button>
+    </form>
+  </div>
 </div>
