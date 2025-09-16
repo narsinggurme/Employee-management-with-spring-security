@@ -1,0 +1,63 @@
+/* === Global Theme === */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #FFF3E2, #FFE5EC, #F9E0FF);
+    color: #2D2D2D;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* === Navbar === */
+.navbar {
+    background: linear-gradient(90deg, #FF6B6B, #FF8787, #FFD93D);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.navbar .nav-link {
+    color: #fff !important;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar .nav-link:hover,
+.navbar .active {
+    color: #6A4C93 !important;
+    /* purple hover effect */
+}
+
+/* === Buttons === */
+.btn-custom {
+    background: linear-gradient(90deg, #FF6B6B, #FFD93D);
+    color: #fff;
+    border: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn-custom:hover {
+    background: linear-gradient(90deg, #6A4C93, #FF6B6B);
+    transform: translateY(-2px) scale(1.03);
+}
+
+/* Override Bootstrap outline buttons */
+.btn-outline-light {
+    border: 2px solid #fff;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+.btn-outline-light:hover {
+    background: #fff;
+    color: #FF6B6B;
+}
+
+/* === Footer === */
+.footer {
+    background: linear-gradient(90deg, #FF6B6B, #6A4C93);
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.15);
+}

@@ -1,73 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 @import "bootstrap/dist/css/bootstrap.min.css";
 
+
+html,
 body,
-html {
+app-root {
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
+    /* prevent horizontal scrollbar */
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-body::-webkit-scrollbar {
-    display: none;
+app-root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
-body {
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
-}
-
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-}
-
-.footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #343a40;
-    color: red;
-    padding: 10px;
-    text-align: center;
-}
-
-.main-content {
-    margin-top: 60px;
-    margin-bottom: 60px;
-    height: calc(100vh - 120px);
-    overflow-y: auto;
-}
-
-.employee-card {
-    max-width: 500px;
-    background: linear-gradient(135deg, #7b1fa2, #9c27b0);
-    color: #fff;
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    font-family: 'Segoe UI', sans-serif;
-    padding: 20px;
-}
-
-.text-purple {
-    color: #6a1b9a;
-}
-
-html,
-body {
-    height: 100%;
-}
-
-body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+main {
+    flex: 1;
+    /* takes remaining height between navbar & footer */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

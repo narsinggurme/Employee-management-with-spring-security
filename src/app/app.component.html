@@ -1,44 +1,42 @@
-<div class="container">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <div class="container">
-            <ul class="navbar-nav me-auto">
-                <li class=" nav-item">
-                    <a routerLink="home" routerLinkActive="active" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a routerLink="#" routerLinkActive="active" class="nav-link">About</a>
-                </li>
-                <li class=" nav-item" *ngIf="authservice.isLoggedIn()">
-                    <a routerLink="employees" routerLinkActive="active" class="nav-link">Employee List</a>
-                </li>
-                <li class="nav-item" *ngIf="authservice.isLoggedIn()">
-                    <a routerLink="create-employee" routerLinkActive="active" class="nav-link">Add Employee</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ms-auto" *ngIf="authservice.isLoggedIn()">
-                <li class="nav-item">
-                    <button (click)="onLogout()" class="btn btn-outline-light me-2">Logout</button>
-                </li>
-            </ul>
+<nav class="navbar navbar-expand-sm navbar-dark py-2 bg-dark fixed-top">
+    <div class="container">
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+                <a routerLink="home" routerLinkActive="active" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="#" routerLinkActive="active" class="nav-link">About</a>
+            </li>
+            <li class="nav-item" *ngIf="authservice.isLoggedIn()">
+                <a routerLink="employees" routerLinkActive="active" class="nav-link">Employee List</a>
+            </li>
+            <li class="nav-item" *ngIf="authservice.isLoggedIn()">
+                <a routerLink="create-employee" routerLinkActive="active" class="nav-link">Add Employee</a>
+            </li>
+        </ul>
 
-            <ul class="navbar-nav ms-auto" *ngIf="!authservice.isLoggedIn()">
-                <li class="nav-item">
-                    <a routerLink="login" routerLinkActive="active" class="btn btn-outline-light me-2">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a routerLink="signup" routerLinkActive="active" class="btn btn-outline-light me-2">Signup</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+        <ul class="navbar-nav ms-auto" *ngIf="authservice.isLoggedIn()">
+            <li class="nav-item">
+                <button (click)="onLogout()" class="btn btn-custom me-2">Logout</button>
+            </li>
+        </ul>
 
-    <div class="container main-content">
-        <router-outlet></router-outlet>
+        <ul class="navbar-nav ms-auto" *ngIf="!authservice.isLoggedIn()">
+            <li class="nav-item">
+                <a routerLink="login" class="btn btn-custom me-2">Login</a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="signup" class="btn btn-custom me-2">Signup</a>
+            </li>
+        </ul>
     </div>
+</nav>
+<main class="flex-grow-1 mt-2 pt-3">
+    <router-outlet></router-outlet>
+</main>
 
-    <footer class="footer">
-        <div class="container">
-            <span>Narsing Gurme ©2025</span>
-        </div>
-    </footer>
-</div>
+<footer class="footer bg-dark text-light text-center py-2 mt-auto fixed-bottom">
+    <div class="container">
+        <span>Narsing Gurme ©2025</span>
+    </div>
+</footer>

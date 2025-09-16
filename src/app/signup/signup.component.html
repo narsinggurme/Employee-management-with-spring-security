@@ -1,46 +1,79 @@
-<form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="container mt-5" style="max-width: 400px;">
-    <h2 class="text-center mb-4">Sign Up</h2>
-
-    <div class="mb-3">
-        <label for="username" class="form-label">Username</label>
-        <input type="text" id="username" formControlName="username" class="form-control"
-            placeholder="Enter your username" />
-        <div *ngIf="signupForm.get('username')?.touched && signupForm.get('username')?.invalid"
-            class="text-danger mt-1">
-            Username is required
+<div class="signup-container d-flex vh-100">
+    <!-- Left Section (Image / Quote) -->
+    <div class="signup-left d-none d-md-flex align-items-center justify-content-center">
+        <div class="text-center text-white px-4">
+            <h1 class="fw-bold">Join Our EMS</h1>
+            <p class="lead">Manage employees smarter, faster, better 🚀</p>
         </div>
     </div>
 
-    <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" id="password" formControlName="password" class="form-control"
-            placeholder="Enter your password" />
-        <div *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.invalid"
-            class="text-danger mt-1">
-            Password is required
+    <!-- Right Section (Signup Form) -->
+    <div class="signup-right d-flex align-items-center justify-content-center w-100">
+        <div class="card shadow-lg border-0 rounded-4 p-4 signup-card">
+            <h2 class="text-center mb-4 fw-bold text-gradient">Create Account</h2>
+
+            <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+                <!-- Username -->
+                <div class="mb-3">
+                    <label for="username" class="form-label fw-semibold">Username</label>
+                    <input type="text" id="username" formControlName="username" class="form-control"
+                        placeholder="Enter your username" />
+                    <div *ngIf="
+              signupForm.get('username')?.touched &&
+              signupForm.get('username')?.invalid
+            " class="text-danger mt-1">
+                        Username is required
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="mb-3">
+                    <label for="password" class="form-label fw-semibold">Password</label>
+                    <input type="password" id="password" formControlName="password" class="form-control"
+                        placeholder="Enter your password" />
+                    <div *ngIf="
+              signupForm.get('password')?.touched &&
+              signupForm.get('password')?.invalid
+            " class="text-danger mt-1">
+                        Password is required
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3">
+                    <label for="email" class="form-label fw-semibold">Email</label>
+                    <input type="email" id="email" class="form-control" formControlName="email"
+                        placeholder="Enter email" />
+                    <div *ngIf="
+              signupForm.get('email')?.touched &&
+              signupForm.get('email')?.invalid
+            " class="text-danger mt-1">
+                        Email is required
+                    </div>
+                </div>
+
+                <!-- Role -->
+                <div class="mb-3">
+                    <label for="roles" class="form-label fw-semibold">Role</label>
+                    <select id="roles" formControlName="roles" class="form-select">
+                        <option value="NORMAL">Normal</option>
+                        <option value="ADMIN">Admin</option>
+                    </select>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="btn btn-gradient w-100 fw-semibold" [disabled]="signupForm.invalid">
+                    Sign Up
+                </button>
+
+                <!-- Login link -->
+                <div class="text-center mt-3">
+                    Already have an account?
+                    <a routerLink="/login" class="text-decoration-none fw-semibold text-gradient">
+                        Login here
+                    </a>
+                </div>
+            </form>
         </div>
     </div>
-    <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" id="email" class="form-control" formControlName="email" placeholder="Enter email" />
-        <div *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid" class="text-danger mt-1">
-            Email is required
-        </div>
-    </div>
-
-    <div class="mb-3">
-        <label for="roles" class="form-label">Role</label>
-        <select id="roles" formControlName="roles" class="form-select">
-            <option value="NORMAL">Normal</option>
-            <option value="ADMIN">Admin</option>
-        </select>
-    </div>
-
-    <button type="submit" class="btn btn-primary w-100" [disabled]="signupForm.invalid">
-        Sign Up
-    </button>
-
-    <div class="text-center mt-3">
-        Already have an account? <a routerLink="/login">Login here</a>
-    </div>
-</form>
+</div>

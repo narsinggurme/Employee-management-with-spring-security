@@ -17,6 +17,11 @@ import { ForgotPasswordComponent } from '../forgot-password/forgot-password.comp
 export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
+  showPassword = false;
+
+  showQuote1 = true;
+  showQuote2 = false;
+  showQuote3 = false;
 
   constructor(
     private fb: FormBuilder,
@@ -34,7 +39,29 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
       password: ['', [Validators.required, Validators.minLength(4)]]
+
     });
+
+    this.cycleQuotes();
+  }
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
+
+  private cycleQuotes(): void {
+    setInterval(() => {
+      if (this.showQuote1) {
+        this.showQuote1 = false;
+        this.showQuote2 = true;
+      } else if (this.showQuote2) {
+        this.showQuote2 = false;
+        this.showQuote3 = true;
+      } else {
+        this.showQuote3 = false;
+        this.showQuote1 = true;
+      }
+    }, 3000); // change every 3 sec
   }
 
   onSubmit(): void {
@@ -73,6 +100,7 @@ export class LoginComponent implements OnInit {
     const dialogRef = this.dialog.open(ForgotPasswordComponent, {
       width: '400px'
     });
+
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {

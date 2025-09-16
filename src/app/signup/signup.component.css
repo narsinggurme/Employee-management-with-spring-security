@@ -1,0 +1,63 @@
+.signup-container {
+    width: 100%;
+}
+
+/* Left Section */
+.signup-left {
+    flex: 1;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url("https://images.unsplash.com/photo-1581093588401-22a3d59dcb62") no-repeat center center/cover;
+    color: #fff;
+    padding: 2rem;
+}
+
+/* Right Section */
+.signup-right {
+    flex: 1;
+    background: linear-gradient(135deg, #ff6a88, #ffcc70);
+}
+
+/* Card Styling */
+.signup-card {
+    width: 100%;
+    max-width: 420px;
+    background: #fff;
+    border-radius: 20px;
+    animation: fadeInUp 0.8s ease-in-out;
+}
+
+/* Gradient button */
+.btn-gradient {
+    background: linear-gradient(to right, #ff6a88, #ffcc70);
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    border-radius: 10px;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-gradient:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(255, 105, 135, 0.3);
+}
+
+/* Gradient text */
+.text-gradient {
+    background: linear-gradient(to right, #ff6a88, #ffcc70);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

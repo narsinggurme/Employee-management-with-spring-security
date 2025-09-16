@@ -1,33 +1,47 @@
-<div class="col-md-4 offset-md-4 mt-5">
-    <h3 class="mb-3 text-center">Login</h3>
+<div class="login-hero d-flex">
 
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
-        <div class="form-group mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input type="text" id="username" class="form-control" formControlName="username"
-                placeholder="Enter username" autocomplete="username">
-            <small *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.invalid" class="text-danger">
-                Username is required (min 3 characters).
-            </small>
+    <div class="login-info d-flex flex-column justify-content-center align-items-center text-white p-5">
+        <h1 class="fw-bold">Employee Management System</h1>
+        <p class="lead">
+            “Great teams are built on trust, transparency, and growth.”
+        </p>
+        <div class="quote-animation mt-4">
+            <span *ngIf="showQuote1">Manage employees smarter.</span>
+            <span *ngIf="showQuote2">Empower teams with ease.</span>
+            <span *ngIf="showQuote3">Boost productivity, together.</span>
         </div>
+    </div>
 
-        <div class="form-group mb-3">
-            <label for="password" class="form-label">Password</label>
+    <div class="login-container d-flex justify-content-center align-items-center">
+        <div class="card shadow-lg border-0 rounded-4 p-4 login-card">
+            <h3 class="mb-3 text-center fw-bold">Login</h3>
 
-            <input type="password" id="password" class="form-control" formControlName="password"
-                placeholder="Enter password">
-            <small *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" class="text-danger">
-                Password is required (min 4 characters).
-            </small>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+                <div class="form-group mb-3">
+                    <label for="username" class="form-label fw-semibold">Username</label>
+                    <input type="text" id="username" class="form-control" formControlName="username"
+                        placeholder="Enter username" autocomplete="username" />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="password" class="form-label fw-semibold">Password</label>
+                    <div class="input-group">
+                        <input [type]="showPassword ? 'text' : 'password'" id="password" class="form-control"
+                            formControlName="password" placeholder="Enter password" />
+                        <button type="button" class="btn btn-outline-secondary" (click)="togglePassword()">
+                            {{ showPassword ? '✦' : '☀︎' }}
+                        </button>
+                    </div>
+                </div>
+
+                <button class="btn btn-gradient w-100 fw-semibold" type="submit" [disabled]="loginForm.invalid">
+                    Login
+                </button>
+
+                <div class="text-center mt-3">
+                    <a routerLink="/forgot-password" class="text-decoration-none">Forgot Password?</a>
+                </div>
+            </form>
         </div>
-
-        <button class="btn btn-light btn-outline-warning w-100" type="submit" [disabled]="loginForm.invalid">
-            Login
-        </button>
-        <div class="text-center mt-2">
-            <a routerLink="/forgot-password">Forgot Password?</a>
-        </div>
-
-
-    </form>
+    </div>
 </div>

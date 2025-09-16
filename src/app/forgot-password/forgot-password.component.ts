@@ -77,10 +77,7 @@ export class ForgotPasswordComponent implements OnInit {
         }
       });
     } else {
-      if (this.forgotForm.invalid) {
-        this.forgotForm.markAllAsTouched();
-        return;
-      }
+
       const newPass = this.forgotForm.get('newPassword')?.value;
       const confirmPass = this.forgotForm.get('confirmPassword')?.value;
 
@@ -92,6 +89,10 @@ export class ForgotPasswordComponent implements OnInit {
 
       this.forgotService.resetPasswordWithToken(this.token, newPass).subscribe({
         next: res => {
+          if (this.forgotForm.invalid) {
+            this.forgotForm.markAllAsTouched();
+            return;
+          }
           this.loading = false;
           console.log("api response: " + res)
           alert(res.message || 'Password reset successfully!');
@@ -99,7 +100,7 @@ export class ForgotPasswordComponent implements OnInit {
         },
         error: err => {
           this.loading = false;
-          alert(err.error?.message || 'Something went wrong')
+          alert(err.error?.message || 'Link expired, please request a new one');
         }
       });
     }
