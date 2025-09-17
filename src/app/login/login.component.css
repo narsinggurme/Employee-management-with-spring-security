@@ -6,7 +6,6 @@
         url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d") no-repeat center center/cover;
 }
 
-/* Left Info Section */
 .login-info {
     flex: 1;
     text-align: center;
@@ -45,7 +44,6 @@
     }
 }
 
-/* Right Login Card */
 .login-container {
     flex: 1;
     display: flex;
@@ -87,7 +85,6 @@
     }
 }
 
-/* Gradient Button */
 .btn-gradient {
     background: linear-gradient(90deg, #FF6B6B, #FFD93D);
     border: none;

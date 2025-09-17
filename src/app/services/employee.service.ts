@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Employee } from './employee';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
+import { Employee } from '../employee';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,10 @@ export class EmployeeService {
   getEmployees(): Observable<Employee[]> {
     return this.http.get<Employee[]>(this.baseUrl);
   }
+  // getEmployees(page: number, limit: number): Observable<Employee[]> {
+  //   return this.http.get<Employee[]>(`${this.baseUrl}?page=${page}&limit=${limit}`);
+  // }
+
 
   createEmployee(employee: Employee): Observable<object> {
     return this.http.post(this.postUrl, employee);

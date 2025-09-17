@@ -1,13 +1,14 @@
 <div class="employee-list container mt-4">
-  <h2 class="text-center mb-4 page-title">👨‍💼 Employee Directory</h2>
+  <div class="header-section">
+    <h2 class="text-center mb-3 page-title">👨‍💼 Employee Directory</h2>
 
-  <!-- Search Bar 
- <div class="search-box mb-3">
-    <input type="text" class="form-control search-input" 
-      placeholder="🔍 Search employees by name, email or department..." [(ngModel)]="searchText"> 
-</div> -->
+    <div class="search-box mb-3">
+      <input type="text" class="form-control search-input"
+        placeholder="🔍 Search employees by name, email or department..." [(ngModel)]="searchText">
+    </div>
+  </div>
 
-  <div class="table-responsive shadow-lg rounded-4 overflow-hidden">
+  <div class="table-container shadow-lg rounded-4 overflow-auto">
     <table class="table custom-table align-middle mb-0">
       <thead>
         <tr>
@@ -20,22 +21,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let emp of employees ">
+        <tr *ngFor="let emp of employees" (click)="employeeDetails(emp.id)">
           <td>{{ emp.id }}</td>
           <td>{{ emp.name }}</td>
           <td>{{ emp.email }}</td>
           <td>{{ emp.phone }}</td>
           <td>{{ emp.dept }}</td>
-          <td class="text-center">
-            <button (click)="updateEmployee(emp.id)" class="btn btn-sm btn-update me-2">
-              ✏️ Update
-            </button>
-            <button (click)="deleteEmployee(emp.id)" class="btn btn-sm btn-delete me-2">
-              🗑️ Delete
-            </button>
-            <button (click)="employeeDetails(emp.id)" class="btn btn-sm btn-view">
-              👁️ View
-            </button>
+          <td class=" text-center">
+            <button (click)="updateEmployee(emp.id)" class="btn btn-sm btn-update me-2">✏️ Update</button>
+            <button (click)="deleteEmployee(emp.id)" class="btn btn-sm btn-delete me-2">🗑️ Delete</button>
           </td>
         </tr>
       </tbody>

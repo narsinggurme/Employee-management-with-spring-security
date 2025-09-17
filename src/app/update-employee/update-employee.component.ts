@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EmployeeService } from '../employee.service';
 import { Employee } from '../employee';
 import { CommonModule } from '@angular/common';
+import { EmployeeService } from '../services/employee.service';
 
 @Component({
   selector: 'app-update-employee',
