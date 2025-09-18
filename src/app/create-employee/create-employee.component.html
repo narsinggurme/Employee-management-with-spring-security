@@ -44,18 +44,28 @@
         <div class="col-md-6 mb-3">
           <label class="form-label fw-semibold">Designation</label>
           <input type="text" class="form-control" formControlName="designation" placeholder="e.g., Software Engineer">
+          <small *ngIf="profileForm.get('designation')?.touched && profileForm.get('designation')?.invalid"
+            class="text-danger">
+            Designation is required.
+          </small>
         </div>
 
         <!-- Salary -->
         <div class="col-md-6 mb-3">
           <label class="form-label fw-semibold">Salary</label>
           <input type="number" class="form-control" formControlName="salary" placeholder="Enter salary">
+          <small *ngIf="profileForm.get('salary')?.touched && profileForm.get('salary')?.invalid" class="text-danger">
+            Salary is required.
+          </small>
         </div>
 
         <!-- Age -->
         <div class="col-md-6 mb-3">
           <label class="form-label fw-semibold">Age</label>
           <input type="number" class="form-control" formControlName="age" placeholder="Enter age">
+          <small *ngIf="profileForm.get('age')?.touched && profileForm.get('age')?.invalid" class="text-danger">
+            Age is required.
+          </small>
         </div>
 
         <!-- Joining Date -->
@@ -63,6 +73,10 @@
           <label class="form-label fw-semibold">Joining Date</label>
           <input type="date" class="form-control" formControlName="joiningDate">
         </div>
+        <small *ngIf="profileForm.get('designation')?.touched && profileForm.get('designation')?.invalid"
+          class="text-danger">
+          Joining Date is required.
+        </small>
       </div>
 
       <!-- Submit Button -->

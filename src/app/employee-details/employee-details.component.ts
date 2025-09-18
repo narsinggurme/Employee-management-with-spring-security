@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Employee } from '../employee';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { EmployeeService } from '../services/employee.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-employee-details',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './employee-details.component.html',
   styleUrl: './employee-details.component.css'
 })

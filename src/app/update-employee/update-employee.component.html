@@ -44,6 +44,36 @@
                     Department is required.
                 </span>
             </div>
+            <div class="form-group mb-4">
+                <label class="fw-bold">Designation:</label>
+                <input type="text" class="form-control" formControlName="designation">
+                <span class="text-danger"
+                    *ngIf="empForm.get('designation')?.touched && empForm.get('designation')?.invalid">
+                    Department is required.
+                </span>
+            </div>
+            <div class="form-group mb-4">
+                <label class="fw-bold">Age:</label>
+                <input type="text" class="form-control" formControlName="age">
+                <span class="text-danger" *ngIf="empForm.get('age')?.touched && empForm.get('age')?.invalid">
+                    Department is required.
+                </span>
+            </div>
+            <div class="form-group mb-4">
+                <label class="fw-bold">Salary:</label>
+                <input type="text" class="form-control" formControlName="salary">
+                <span class="text-danger" *ngIf="empForm.get('salary')?.touched && empForm.get('salary')?.invalid">
+                    Department is required.
+                </span>
+            </div>
+            <div class="form-group mb-4">
+                <label class="fw-bold">Joining Date:</label>
+                <input type="text" class="form-control" formControlName="joiningDate">
+                <span class="text-danger"
+                    *ngIf="empForm.get('joiningDate')?.touched && empForm.get('joiningDate')?.invalid">
+                    Department is required.
+                </span>
+            </div>
 
             <div class="text-center">
                 <button class="btn submit-btn" type="submit" [disabled]="empForm.invalid">Submit</button>

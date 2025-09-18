@@ -32,7 +32,11 @@ export class UpdateEmployeeComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.pattern(/^[7-9]\d{9}$/)]],
-      dept: ['', [Validators.required]]
+      dept: ['', [Validators.required]],
+      designation: ['', [Validators.required]],
+      age: ['', [Validators.required]],
+      salary: ['', [Validators.required]],
+      joiningDate: ['', [Validators.required]]
     });
 
     this.id = this.routes.snapshot.params['id'];
@@ -43,7 +47,11 @@ export class UpdateEmployeeComponent implements OnInit {
           name: [data.name, [Validators.required, Validators.minLength(3)]],
           email: [data.email, [Validators.required, Validators.email]],
           phone: [data.phone, [Validators.required, Validators.pattern(/^[7-9]\d{9}$/)]],
-          dept: [data.dept, [Validators.required]]
+          dept: [data.dept, [Validators.required]],
+          designation: [data.designation, [Validators.required]],
+          age: [data.age, [Validators.required]],
+          salary: [data.salary, [Validators.required]],
+          joiningDate: [data.joiningDate, [Validators.required]]
         });
       },
       error: (err) => {

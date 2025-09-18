@@ -27,6 +27,19 @@ export class EmployeeListComponent implements OnInit {
     });
   }
 
+  get filteredEmployees(): Employee[] {
+    if (!this.searchText) {
+      return this.employees;
+    }
+    const lower = this.searchText.toLowerCase();
+    return this.employees.filter(emp =>
+      emp.name.toLowerCase().includes(lower) ||
+      emp.email.toLowerCase().includes(lower) ||
+      emp.dept.toLowerCase().includes(lower)
+    );
+  }
+
+
   updateEmployee(id: number): void {
     this.router.navigate(['update-employee', id]);
   }

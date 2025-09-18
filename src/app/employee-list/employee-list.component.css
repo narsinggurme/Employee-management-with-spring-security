@@ -1,4 +1,4 @@
-/* Title with smooth gradient text */
+/* Title with smooth gradient text + animation */
 .page-title {
     font-weight: 700;
     font-size: 2rem;
@@ -7,6 +7,22 @@
     -webkit-background-clip: text;
     color: transparent;
     transition: all 0.3s ease;
+    animation: shineText 4s linear infinite;
+}
+
+/* Title shine animation */
+@keyframes shineText {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 /* Fixed header with subtle shadow */
@@ -21,10 +37,17 @@
     transition: all 0.3s ease;
 }
 
-/* Search Box - more rounded and smoother shadow */
+/* Slight shrink effect on scroll */
+.header-section.scrolled {
+    padding: 8px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Search Box */
 .search-box {
     display: flex;
     justify-content: center;
+    animation: fadeInUp 0.6s ease-in-out;
 }
 
 .search-input {
@@ -40,18 +63,20 @@
     outline: none;
     border-color: #ff5e62;
     box-shadow: 0 6px 15px rgba(255, 94, 98, 0.25);
+    transform: scale(1.03);
 }
 
-/* Scrollable table container with smooth scroll */
+/* Table container with fade-in */
 .table-container {
     max-height: 400px;
     overflow-y: auto;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
+    animation: fadeIn 0.8s ease;
 }
 
-/* Scrollbar styling */
+/* Smooth Scroll */
 .table-container::-webkit-scrollbar {
     width: 8px;
 }
@@ -65,7 +90,7 @@
     background: #fefefe;
 }
 
-/* Table styling */
+/* Table */
 .custom-table {
     border-collapse: separate;
     border-spacing: 0;
@@ -80,12 +105,19 @@
     color: #fff;
     font-weight: 600;
     font-size: 1rem;
+    animation: slideDown 0.6s ease-in-out;
 }
 
 .custom-table th,
 .custom-table td {
     padding: 15px;
     vertical-align: middle;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* Row hover with smooth pop effect */
+.custom-table tbody tr {
+    transition: all 0.3s ease;
 }
 
 .custom-table tbody tr:nth-child(even) {
@@ -98,19 +130,27 @@
 
 .custom-table tbody tr:hover {
     background: #ffeaea;
-    transform: scale(1.02);
-    transition: all 0.3s ease;
+    transform: scale(1.01);
+    box-shadow: 0 3px 12px rgba(255, 94, 98, 0.15);
     cursor: pointer;
 }
 
-/* Buttons with smooth gradients and hover effect */
-.btn-update {
-    background: linear-gradient(to right, #f7971e, #ffd200);
-    color: white;
+/* Buttons with pulse animation on hover */
+.btn-update,
+.btn-delete,
+.btn-view {
     border: none;
     border-radius: 10px;
     padding: 7px 15px;
+    color: white;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Update button */
+.btn-update {
+    background: linear-gradient(to right, #f7971e, #ffd200);
 }
 
 .btn-update:hover {
@@ -118,13 +158,9 @@
     transform: scale(1.07);
 }
 
+/* Delete button */
 .btn-delete {
     background: linear-gradient(to right, #ff5e62, #ff9966);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 7px 15px;
-    transition: all 0.3s ease;
 }
 
 .btn-delete:hover {
@@ -132,13 +168,9 @@
     transform: scale(1.07);
 }
 
+/* View button */
 .btn-view {
     background: linear-gradient(to right, #c471ed, #f64f59);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 7px 15px;
-    transition: all 0.3s ease;
 }
 
 .btn-view:hover {
@@ -146,6 +178,7 @@
     transform: scale(1.07);
 }
 
+/* Modal */
 .modal {
     display: none;
     position: fixed;
@@ -172,17 +205,61 @@
     max-width: 90%;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     position: relative;
+    animation: slideUp 0.4s ease;
 }
 
+/* Close button */
 .close-btn {
     position: absolute;
     top: 10px;
     right: 15px;
     font-size: 1.5rem;
     cursor: pointer;
+    transition: transform 0.2s ease;
 }
 
+.close-btn:hover {
+    transform: rotate(90deg);
+}
+
+/* Keyframes */
 @keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
     from {
         opacity: 0;
         transform: translateY(-20px);

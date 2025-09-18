@@ -17,16 +17,24 @@
           <th>Email</th>
           <th>Phone</th>
           <th>Department</th>
+          <th>Designation</th>
+          <th>Age</th>
+          <th>Salary</th>
+          <th>Joining Date</th>
           <th class="text-center">Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let emp of employees" (click)="employeeDetails(emp.id)">
+        <tr *ngFor="let emp of filteredEmployees" (click)="employeeDetails(emp.id)">
           <td>{{ emp.id }}</td>
           <td>{{ emp.name }}</td>
           <td>{{ emp.email }}</td>
           <td>{{ emp.phone }}</td>
           <td>{{ emp.dept }}</td>
+          <td>{{emp.designation}}</td>
+          <td>{{ emp.age }}</td>
+          <td>{{emp.salary}}</td>
+          <td>{{emp.joiningDate}}</td>
           <td class=" text-center">
             <button (click)="updateEmployee(emp.id)" class="btn btn-sm btn-update me-2">✏️ Update</button>
             <button (click)="deleteEmployee(emp.id)" class="btn btn-sm btn-delete me-2">🗑️ Delete</button>

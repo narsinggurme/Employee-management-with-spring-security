@@ -39,8 +39,6 @@ export class AuthService {
       })
     );
   }
-
-
   refreshToken(): Observable<any> {
     const refreshToken = localStorage.getItem('refresh_token');
     return this.http.post<any>(this.refreshUrl, { refreshToken }).pipe(
