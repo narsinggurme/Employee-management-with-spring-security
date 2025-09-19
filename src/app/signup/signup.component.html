@@ -1,4 +1,4 @@
-<div class="signup-container d-flex vh-100">
+<div class="signup-container d-flex ">
     <!-- Left Section (Image / Quote) -->
     <div class="signup-left d-none d-md-flex align-items-center justify-content-center">
         <div class="text-center text-white px-4">
@@ -52,6 +52,7 @@
                     </div>
                 </div>
 
+
                 <!-- Role -->
                 <div class="mb-3">
                     <label for="roles" class="form-label fw-semibold">Role</label>
@@ -60,6 +61,32 @@
                         <option value="ADMIN">Admin</option>
                     </select>
                 </div>
+
+                <div class="mb-3">
+                    <label for="phone" class="form-label fw-semibold">Phone</label>
+                    <input type="text" id="phone" formControlName="phone" class="form-control"
+                        placeholder="Enter your phone number" />
+                    <div *ngIf="signupForm.get('phone')?.touched && signupForm.get('phone')?.invalid"
+                        class="text-danger mt-1">
+                        Phone is required
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <button type="button" class="btn btn-outline-primary w-100" (click)="sendOtp()"
+                        [disabled]="!signupForm.get('phone')?.valid || otpSent">
+                        {{ otpSent ? 'OTP Sent' : 'Send OTP' }}
+                    </button>
+                </div>
+                <div class="mb-3" *ngIf="otpSent">
+                    <label for="otp" class="form-label fw-semibold">OTP</label>
+                    <input type="text" id="otp" formControlName="otp" class="form-control" placeholder="Enter OTP" />
+                    <button type="button" class="btn btn-outline-success w-100 mt-2" (click)="verifyOtp()"
+                        [disabled]="signupForm.get('otp')?.invalid">
+                        Verify OTP
+                    </button>
+
+                </div>
+
 
                 <!-- Submit -->
                 <button type="submit" class="btn btn-gradient w-100 fw-semibold" [disabled]="signupForm.invalid">

@@ -42,11 +42,14 @@
     box-shadow: 0 8px 20px rgba(255, 105, 135, 0.3);
 }
 
-/* Gradient text */
 .text-gradient {
+    color: #ff6a88;
     background: linear-gradient(to right, #ff6a88, #ffcc70);
     -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
 }
 
 /* Animation */

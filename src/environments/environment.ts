@@ -6,5 +6,8 @@ export const environment = {
     postUrl: "http://localhost:8081/api/v1/empl",
     refreshUrl: "http://localhost:8081/api/v1/auth/refresh",
     logoutUrl: "http://localhost:8081/api/v1/auth/logout",
-    forgotPassword: "http://localhost:8081/api/v1/password/forgot-password"
+    forgotPassword: "http://localhost:8081/api/v1/password/forgot-password",
+    signUpUrl: "http://localhost:8081/api/v1/signup",
+    sendOtpUrl: "http://localhost:8081/api/v1/auth/send-otp",
+    verifyOtpUrl: "http://localhost:8081/api/v1/auth/verify-otp"
 };
