@@ -15,9 +15,17 @@ import { FormsModule } from '@angular/forms';
 export class EmployeeListComponent implements OnInit {
   employees: Employee[] = [];
   searchText: string = "";
+  placeholderText = '';
+  cursor = '';
+  private phrases = ["Search employees by Name, Email or Department...."];
+  private currentPhrase = 0;
+  private currentChar = 0;
+
   constructor(private employeeService: EmployeeService, private router: Router) { }
   ngOnInit(): void {
     this.getEmployees();
+    this.typeWriter();
+    this.blinkCursor();
   }
 
   getEmployees(): void {
@@ -38,25 +46,35 @@ export class EmployeeListComponent implements OnInit {
       emp.dept.toLowerCase().includes(lower)
     );
   }
-
-
-  updateEmployee(id: number): void {
-    this.router.navigate(['update-employee', id]);
-  }
-
   employeeDetails(id: number): void {
     this.router.navigate(['employee-details', id]);
   }
+  typeWriter() {
+    const fullText = this.phrases[this.currentPhrase];
+    if (this.currentChar < fullText.length) {
+      this.placeholderText += fullText.charAt(this.currentChar);
+      this.currentChar++;
+      setTimeout(() => this.typeWriter(), 150);
+    } else {
+      setTimeout(() => this.erase(), 1500);
+    }
+  }
 
-  deleteEmployee(id: number): void {
-    this.employeeService.deleteEmployeeByid(id).subscribe({
-      next: () => {
-        console.log(`Employee with ID ${id} deleted successfully.`);
-        this.getEmployees();
-      },
-      error: err => {
-        console.error('Error deleting employee:', err);
-      }
-    });
+  erase() {
+    if (this.currentChar > 0) {
+      this.placeholderText = this.placeholderText.slice(0, -1);
+      this.currentChar--;
+      setTimeout(() => this.erase(), 80);
+    } else {
+      this.currentPhrase = (this.currentPhrase + 1) % this.phrases.length;
+      setTimeout(() => this.typeWriter(), 2000);
+    }
+  }
+
+  blinkCursor() {
+    setInterval(() => {
+      this.cursor = this.cursor === '|' ? ' ' : '|';
+    }, 500);
   }
 }
+

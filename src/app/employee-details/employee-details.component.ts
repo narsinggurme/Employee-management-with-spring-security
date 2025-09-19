@@ -13,6 +13,8 @@ import { CommonModule } from '@angular/common';
 export class EmployeeDetailsComponent implements OnInit {
   id!: number;
   employee: Employee = new Employee();
+  employees: Employee[] = [];
+
   constructor(private route: ActivatedRoute, private employeeService: EmployeeService, private router: Router) { }
 
   ngOnInit(): void {
@@ -21,7 +23,32 @@ export class EmployeeDetailsComponent implements OnInit {
       this.employee = data;
     });
   }
+
   gotoList() {
     this.router.navigate([`/employees`]);
   }
+
+  updateEmployee(id: number): void {
+    this.router.navigate(['update-employee', id]);
+  }
+
+  getEmployees(): void {
+    this.employeeService.getEmployees().subscribe((data: Employee[]) => {
+      console.log('Employee Data:', data);
+      this.employees = data;
+    });
+  }
+
+  deleteEmployee(id: number): void {
+    this.employeeService.deleteEmployeeByid(id).subscribe({
+      next: () => {
+        console.log(`Employee with ID ${id} deleted successfully.`);
+        this.getEmployees();
+      },
+      error: err => {
+        console.error('Error deleting employee:', err);
+      }
+    });
+  }
+
 }

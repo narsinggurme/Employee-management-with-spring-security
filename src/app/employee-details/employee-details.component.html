@@ -24,8 +24,8 @@
         <!-- Buttons -->
         <div class="text-center mt-5 d-flex justify-content-center gap-3 flex-wrap">
             <button class="btn back-btn px-4 fw-bold" (click)="gotoList()">⬅ Back</button>
-            <button class="btn update-btn px-4 fw-bold">✏️ Update</button>
-            <button class="btn delete-btn px-4 fw-bold">🗑 Delete</button>
+            <button class="btn update-btn px-4 fw-bold" (click)="updateEmployee(id)"> ✏️ Update</button>
+            <button class="btn delete-btn px-4 fw-bold" (click)="deleteEmployee(id)">🗑 Delete</button>
         </div>
 
     </div>

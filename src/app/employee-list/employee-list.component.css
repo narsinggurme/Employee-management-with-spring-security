@@ -1,272 +1,172 @@
-/* Title with smooth gradient text + animation */
-.page-title {
-    font-weight: 700;
-    font-size: 2rem;
-    background: linear-gradient(45deg, #ff6f61, #f7b32b, #c471ed);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    transition: all 0.3s ease;
-    animation: shineText 4s linear infinite;
+/* Global container */
+.employee-list {
+    width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Title shine animation */
-@keyframes shineText {
-    0% {
-        background-position: 0% 50%;
+/* Header Section */
+.header-section {
+    background: linear-gradient(135deg, #f9f9f9, #ffffff);
+    border: 1px solid #eee;
+    color: #333;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+}
+
+.page-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0;
+    color: #444;
+}
+
+/* Search Box Container */
+.search-box {
+    margin-top: 20px;
+    font-family: 'Poppins', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    /* modern font */
+}
+
+/* Search Input */
+.search-input {
+    width: 100%;
+    border-radius: 30px;
+    padding: 14px 25px;
+    border: 1px solid #ddd;
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    font-size: 16px;
+    color: #444;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease-in-out;
+    background: #fff;
+}
+
+/* Placeholder gradient effect */
+.search-input::placeholder {
+    font-weight: 500;
+    font-style: italic;
+    color: transparent;
+    background: linear-gradient(90deg, #ff6f61, #ffb347);
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: placeholderFade 3s infinite;
+}
+
+/* Focus effect */
+.search-input:focus {
+    outline: none;
+    border-color: #ff6f61;
+    box-shadow: 0 0 12px rgba(255, 111, 97, 0.4);
+    font-size: 17px;
+}
+
+/* Cursor animation */
+.search-input {
+    caret-color: #ff6f61;
+    /* coral colored cursor */
+}
+
+/* Placeholder fade animation */
+@keyframes placeholderFade {
+
+    0%,
+    100% {
+        opacity: 0.5;
     }
 
     50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
+        opacity: 1;
     }
 }
 
-/* Fixed header with subtle shadow */
-.header-section {
-    position: sticky;
-    top: 0;
-    background: #fefefe;
-    z-index: 10;
-    padding: 15px 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    border-bottom: 1px solid #eee;
-    transition: all 0.3s ease;
-}
-
-/* Slight shrink effect on scroll */
-.header-section.scrolled {
-    padding: 8px 0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-/* Search Box */
-.search-box {
-    display: flex;
-    justify-content: center;
-    animation: fadeInUp 0.6s ease-in-out;
-}
-
-.search-input {
-    width: 60%;
-    border-radius: 30px;
-    padding: 12px 20px;
-    border: 1px solid #f5b7b1;
-    box-shadow: 0 4px 10px rgba(255, 94, 98, 0.15);
-    transition: all 0.3s ease;
-}
-
-.search-input:focus {
-    outline: none;
-    border-color: #ff5e62;
-    box-shadow: 0 6px 15px rgba(255, 94, 98, 0.25);
-    transform: scale(1.03);
-}
-
-/* Table container with fade-in */
+/* Table Container */
 .table-container {
     max-height: 400px;
-    overflow-y: auto;
+    /* Only 5–6 rows visible */
+    min-height: 400px;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-    animation: fadeIn 0.8s ease;
+    background: #fff;
+    padding: 10px;
+    overflow-y: auto;
+    /* Enable scroll */
+    scroll-behavior: smooth;
+    /* Smooth scroll */
 }
 
-/* Smooth Scroll */
+/* Table Styling */
+.custom-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.custom-table thead {
+    background: #f4f4f4;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.custom-table th {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #555;
+    padding: 12px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.custom-table td {
+    background: #fff;
+    padding: 12px;
+    border: none;
+    font-size: 14px;
+    color: #444;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Row animation */
+.custom-table tbody tr {
+    cursor: pointer;
+    border-radius: 8px;
+    transform: translateY(10px);
+    opacity: 0;
+    animation: fadeInUp 0.4s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Hover Effect */
+.custom-table tbody tr:hover td {
+    background: #fdf2e9;
+    /* soft pastel orange */
+    color: #d35400;
+    font-weight: 500;
+    transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+/* Scrollbar styling */
 .table-container::-webkit-scrollbar {
     width: 8px;
 }
 
 .table-container::-webkit-scrollbar-thumb {
-    background-color: rgba(200, 200, 200, 0.5);
-    border-radius: 4px;
+    background: #bbb;
+    border-radius: 6px;
 }
 
 .table-container::-webkit-scrollbar-track {
-    background: #fefefe;
-}
-
-/* Table */
-.custom-table {
-    border-collapse: separate;
-    border-spacing: 0;
-    width: 100%;
-    background: #fff;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.custom-table thead {
-    background: linear-gradient(135deg, #ff6f61, #f7b32b, #c471ed);
-    color: #fff;
-    font-weight: 600;
-    font-size: 1rem;
-    animation: slideDown 0.6s ease-in-out;
-}
-
-.custom-table th,
-.custom-table td {
-    padding: 15px;
-    vertical-align: middle;
-    transition: background 0.3s ease, transform 0.2s ease;
-}
-
-/* Row hover with smooth pop effect */
-.custom-table tbody tr {
-    transition: all 0.3s ease;
-}
-
-.custom-table tbody tr:nth-child(even) {
-    background-color: #fff5f5;
-}
-
-.custom-table tbody tr:nth-child(odd) {
-    background-color: #fff;
-}
-
-.custom-table tbody tr:hover {
-    background: #ffeaea;
-    transform: scale(1.01);
-    box-shadow: 0 3px 12px rgba(255, 94, 98, 0.15);
-    cursor: pointer;
-}
-
-/* Buttons with pulse animation on hover */
-.btn-update,
-.btn-delete,
-.btn-view {
-    border: none;
-    border-radius: 10px;
-    padding: 7px 15px;
-    color: white;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Update button */
-.btn-update {
-    background: linear-gradient(to right, #f7971e, #ffd200);
-}
-
-.btn-update:hover {
-    box-shadow: 0 6px 15px rgba(247, 151, 30, 0.3);
-    transform: scale(1.07);
-}
-
-/* Delete button */
-.btn-delete {
-    background: linear-gradient(to right, #ff5e62, #ff9966);
-}
-
-.btn-delete:hover {
-    box-shadow: 0 6px 15px rgba(255, 94, 98, 0.3);
-    transform: scale(1.07);
-}
-
-/* View button */
-.btn-view {
-    background: linear-gradient(to right, #c471ed, #f64f59);
-}
-
-.btn-view:hover {
-    box-shadow: 0 6px 15px rgba(196, 113, 237, 0.3);
-    transform: scale(1.07);
-}
-
-/* Modal */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.modal.show {
-    display: flex;
-    animation: fadeIn 0.3s ease-in-out;
-}
-
-.modal-content {
-    background: #fff;
-    padding: 25px;
-    border-radius: 12px;
-    width: 400px;
-    max-width: 90%;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-    position: relative;
-    animation: slideUp 0.4s ease;
-}
-
-/* Close button */
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-.close-btn:hover {
-    transform: rotate(90deg);
-}
-
-/* Keyframes */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    background: #f1f1f1;
 }

@@ -3,8 +3,8 @@
     <h2 class="text-center mb-3 page-title">👨‍💼 Employee Directory</h2>
 
     <div class="search-box mb-3">
-      <input type="text" class="form-control search-input"
-        placeholder="🔍 Search employees by name, email or department..." [(ngModel)]="searchText">
+      <input type="text" class="form-control search-input" [placeholder]="placeholderText + cursor"
+        [(ngModel)]="searchText">
     </div>
   </div>
 
@@ -21,7 +21,6 @@
           <th>Age</th>
           <th>Salary</th>
           <th>Joining Date</th>
-          <th class="text-center">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -35,10 +34,6 @@
           <td>{{ emp.age }}</td>
           <td>{{emp.salary}}</td>
           <td>{{emp.joiningDate}}</td>
-          <td class=" text-center">
-            <button (click)="updateEmployee(emp.id)" class="btn btn-sm btn-update me-2">✏️ Update</button>
-            <button (click)="deleteEmployee(emp.id)" class="btn btn-sm btn-delete me-2">🗑️ Delete</button>
-          </td>
         </tr>
       </tbody>
     </table>

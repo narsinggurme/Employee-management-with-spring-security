@@ -21,7 +21,7 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) {
     this.restoreSession();
     this.startInactivityWatcher();
-    privrouter: Router
+    router: Router
   }
 
   login(username: string, password: string): Observable<any> {
@@ -29,7 +29,6 @@ export class AuthService {
       tap(res => {
         if (res.accessToken && res.refreshToken) {
           localStorage.setItem('access_token', res.accessToken);
-          localStorage.setItem('refresh_token', res.refreshToken);
           localStorage.setItem('username', username);
 
           this.loggedIn = true;
@@ -39,15 +38,12 @@ export class AuthService {
       })
     );
   }
+
   refreshToken(): Observable<any> {
-    const refreshToken = localStorage.getItem('refresh_token');
-    return this.http.post<any>(this.refreshUrl, { refreshToken }).pipe(
+    return this.http.post<any>(this.refreshUrl, {}).pipe(
       tap(res => {
         if (res.accessToken) {
           localStorage.setItem('access_token', res.accessToken);
-        }
-        if (res.refreshToken) {
-          localStorage.setItem('refresh_token', res.refreshToken);
         }
         this.resetInactivityTimer();
       })
@@ -64,7 +60,7 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    return this.loggedIn;
+    return !!this.getAccessToken();
   }
 
   getUser(): string | null {

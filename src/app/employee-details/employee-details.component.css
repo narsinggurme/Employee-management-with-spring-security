@@ -8,14 +8,16 @@
     color: transparent;
     -webkit-text-fill-color: transparent;
 }
+
 .employee-card {
-    max-width: 1200px;
+    width: 1000px;
     border-radius: 20px;
     padding: 40px;
     background: #ffffff;
     border: none;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .employee-card:hover {
     transform: translateY(-5px);
     box-shadow: 0px 12px 35px rgba(0, 0, 0, 0.15);

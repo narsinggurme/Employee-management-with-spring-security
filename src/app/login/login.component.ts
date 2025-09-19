@@ -71,31 +71,31 @@ export class LoginComponent implements OnInit {
       this.authService.login(username, password).subscribe({
         next: (res) => {
           console.log("Login success", res);
-          if (res.token) {
+
+          if (res.accessToken) {
             localStorage.setItem('access_token', res.accessToken);
-            localStorage.setItem('refresh_token', res.refreshToken);
+            localStorage.setItem('username', res.username);
           }
-          this.authService.login(username, password);
+          console.log("login success and username set");
           this.router.navigate(['/employees']);
+
         },
         error: (err) => {
           console.error("Login failed", err);
           if (err.status === 401) {
-            alert('Incorrect username or password!')
-          }
-          else if (err.status === 403) {
-            alert("you don't have access of this page!");
-          }
-          else if (err.status == 409) {
-            alert('User already logged in from another device')
-          }
-          else {
+            alert('Incorrect username or password!');
+          } else if (err.status === 403) {
+            alert("You don't have access to this page!");
+          } else if (err.status == 409) {
+            alert('User already logged in from another device');
+          } else {
             alert("Something went wrong. Try again later.");
           }
         }
       });
     }
   }
+
   openForgotPassword() {
     const dialogRef = this.dialog.open(ForgotPasswordComponent, {
       width: '400px'
