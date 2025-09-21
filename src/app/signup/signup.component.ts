@@ -14,11 +14,16 @@ import { environment } from '../../environments/environment';
 })
 export class SignupComponent {
   signupForm: FormGroup;
-  otpSent: boolean = false;
-  otpVerified: boolean = false;
+  phoneotpSent: boolean = false;
+  phoneOtpVer: boolean = false;
+  emailOtpSent: boolean = false;
+  emailOtpVerify: boolean = false;
+
   private signupUrl = environment.signUpUrl;
   private sendOtpUrl = environment.sendOtpUrl;
   private verifyOtpUrl = environment.verifyOtpUrl;
+  private sentEmailOtpUrl = environment.emailSentOtpUrl;
+  private emailverifyOtpUrl = environment.emailverifyOtpUrl;
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
     this.signupForm = this.fb.group({
@@ -27,39 +32,81 @@ export class SignupComponent {
       roles: ['NORMAL', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.required], // Added phone
-      otp: ['', Validators.required]
+      otp: ['', Validators.required],
+      emailotp: ['', Validators.required]
     });
   }
   sendOtp() {
     const phone = this.signupForm.value.phone;
     this.http.post(this.sendOtpUrl, { phone }).subscribe({
-      next: () => {
-        this.otpSent = true;
+      next: (response) => {
+        this.phoneotpSent = true;
+        console.log('Send OTP Response:', response);
+
         alert('OTP sent! Check backend console.');
       },
-      error: err => console.error(err)
+      error: (err) => {
+        console.error('sned Phone OTP Error:', err);
+        alert('Invalid OTP, try again.');
+      }
+    });
+  }
+
+  senOtpEmail() {
+    const email = this.signupForm.value.email;
+    this.http.post(this.sentEmailOtpUrl, { email }).subscribe({
+      next: (response) => {
+        this.emailOtpSent = true;
+        console.log('Send OTP Response:', response);
+        alert("otp sent ! Please check you entered email.");
+      },
+      error: (err) => {
+        console.error('Send email OTP Error:', err);
+        alert('Invalid OTP, try again.');
+      }
     });
   }
   verifyOtp() {
     const phone = this.signupForm.value.phone;
-    const otp = this.signupForm.value.otp;
+    const otp = this.signupForm.value.emailotp;
     this.http.post(this.verifyOtpUrl, { phone, otp }).subscribe({
-      next: () => {
-        this.otpVerified = true;
+      next: (response) => {
+        this.phoneOtpVer = true;
+        console.log('Verify OTP Response:', response);
         alert('OTP verified! You can now sign up.');
       },
-      error: () => alert('Invalid OTP, try again.')
+      error: (err) => {
+        console.error('Verify Phone OTP Error:', err);
+        alert('Invalid OTP, try again.');
+      }
+    });
+  }
+
+  veryfyEmailOtp() {
+    const email = this.signupForm.value.email;
+    const emailotp = this.signupForm.value.emailotp;
+
+    this.http.post(this.emailverifyOtpUrl, { email, emailotp }).subscribe({
+      next: (response) => {
+        this.emailOtpVerify = true;
+        console.log('Verify OTP Response:', response);
+        alert('OTP verified! You can now sign up.');
+      },
+      error: (err) => {
+        console.error('Verify email OTP Error:', err);
+        alert('Invalid OTP, try again.');
+      }
     });
   }
 
 
   onSubmit() {
-    if (this.signupForm.valid && this.otpVerified) {
+    if (this.signupForm.valid && this.phoneOtpVer) {
       this.http.post(this.signupUrl, this.signupForm.value).subscribe({
         next: () => this.router.navigate(['/login']),
         error: err => console.error(err)
       });
-    } else if (!this.otpVerified) {
+    } else if (!this.phoneOtpVer) {
       alert('Please verify OTP before signing up.');
     }
   }
