@@ -6,6 +6,7 @@
 
 .text-gradient {
     background: linear-gradient(to right, #d54814, #6d0f12);
+    background: linear-gradient(to right, #4facfe, #00f2fe);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -13,6 +14,8 @@
 
 .btn-gradient {
     background: linear-gradient(to right, #754747, #8c0d95);
+
+    background: linear-gradient(to right, #4facfe, #00f2fe);
     border: none;
     color: #fff;
     font-size: 1rem;
