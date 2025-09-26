@@ -43,7 +43,7 @@
                 <div class="mb-3">
                     <label for="email" class="form-label fw-semibold">Email</label>
                     <input type="email" id="email" class="form-control" formControlName="email"
-                        placeholder="Enter email" />
+                        placeholder="Enter email" autocomplete="email" />
                     <div *ngIf="
               signupForm.get('email')?.touched &&
               signupForm.get('email')?.invalid
@@ -81,7 +81,7 @@
                 <div class="mb-3">
                     <label for="phone" class="form-label fw-semibold">Phone</label>
                     <input type="text" id="phone" formControlName="phone" class="form-control"
-                        placeholder="Enter your phone number" />
+                        placeholder="Enter your phone number" autocomplete="tel" />
                     <div *ngIf="signupForm.get('phone')?.touched && signupForm.get('phone')?.invalid"
                         class="text-danger mt-1">
                         Phone is required

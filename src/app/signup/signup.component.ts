@@ -5,6 +5,11 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } 
 import { Router, RouterModule } from '@angular/router';
 import { environment } from '../../environments/environment';
 
+interface OtpResponse {
+  status: 'success' | 'error';
+  message: string;
+}
+
 @Component({
   selector: 'app-signup',
   standalone: true,
@@ -54,11 +59,17 @@ export class SignupComponent {
 
   senOtpEmail() {
     const email = this.signupForm.value.email;
-    this.http.post(this.sentEmailOtpUrl, { email }).subscribe({
+    this.http.post<OtpResponse>(this.sentEmailOtpUrl, { email }).subscribe({
       next: (response) => {
         this.emailOtpSent = true;
         console.log('Send OTP Response:', response);
-        alert("otp sent ! Please check you entered email.");
+        if (response.status === 'success') {
+          this.emailOtpSent = true;
+          alert("OTP sent! Please check your email.");
+        } else if (response.status === 'error') {
+          this.emailOtpSent = false;
+          alert(response.message); // e.g. "Email already registered"
+        }
       },
       error: (err) => {
         console.error('Send email OTP Error:', err);

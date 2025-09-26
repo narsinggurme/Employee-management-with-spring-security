@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Employee } from '../employee';
 import { CommonModule } from '@angular/common';
 import { EmployeeService } from '../services/employee.service';
+import { Employee } from '../models/employee.model';
 
 @Component({
   selector: 'app-update-employee',
@@ -15,18 +15,17 @@ import { EmployeeService } from '../services/employee.service';
 export class UpdateEmployeeComponent implements OnInit {
   id!: number;
   empForm!: FormGroup;
+  employee!: Employee;
+
   constructor(
     private employeeService: EmployeeService,
-    private routes: ActivatedRoute,
+    private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
-    // We initialize empForm here with empty controls and validators
-    // so that the template ([formGroup]) always has a valid FormGroup
-    // instance from the start. This avoids runtime errors (NG01052)
-    // and ensures validators are applied before API data is patched in.
+    // Initialize form with empty/default values
     this.empForm = this.fb.group({
       id: [null],
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -34,25 +33,19 @@ export class UpdateEmployeeComponent implements OnInit {
       phone: ['', [Validators.required, Validators.pattern(/^[7-9]\d{9}$/)]],
       dept: ['', [Validators.required]],
       designation: ['', [Validators.required]],
-      age: ['', [Validators.required]],
-      salary: ['', [Validators.required]],
-      joiningDate: ['', [Validators.required]]
+      age: [null, [Validators.required]],
+      salary: [null, [Validators.required]],
+      joiningDate: [null, [Validators.required]]
     });
 
-    this.id = this.routes.snapshot.params['id'];
+    // Get ID from route
+    this.id = this.route.snapshot.params['id'];
+
+    // Fetch employee and patch form
     this.employeeService.getEmployeeByid(this.id).subscribe({
-      next: (data) => {
-        this.empForm = this.fb.group({
-          id: [data.id],
-          name: [data.name, [Validators.required, Validators.minLength(3)]],
-          email: [data.email, [Validators.required, Validators.email]],
-          phone: [data.phone, [Validators.required, Validators.pattern(/^[7-9]\d{9}$/)]],
-          dept: [data.dept, [Validators.required]],
-          designation: [data.designation, [Validators.required]],
-          age: [data.age, [Validators.required]],
-          salary: [data.salary, [Validators.required]],
-          joiningDate: [data.joiningDate, [Validators.required]]
-        });
+      next: (data: Employee) => {
+        this.employee = data;
+        this.empForm.patchValue(this.employee); // ✅ patch form instead of recreating FormGroup
       },
       error: (err) => {
         console.error('Error fetching employee:', err);
@@ -62,15 +55,13 @@ export class UpdateEmployeeComponent implements OnInit {
 
   onSubmit() {
     if (this.empForm.valid) {
-      const updatedEmp: Employee = {
-        ...this.empForm.getRawValue(),
-        id: this.id
-      };
-      this.employeeService.updateEmployee(this.id, updatedEmp).subscribe(() => {
-        this.gotoEmployeeList();
+      const updatedEmp: Employee = { ...this.empForm.getRawValue(), id: this.id };
+
+      this.employeeService.updateEmployee(this.id, updatedEmp).subscribe({
+        next: () => this.gotoEmployeeList(),
+        error: (err) => console.error('Error updating employee:', err)
       });
-    }
-    else {
+    } else {
       this.empForm.markAllAsTouched();
     }
   }
