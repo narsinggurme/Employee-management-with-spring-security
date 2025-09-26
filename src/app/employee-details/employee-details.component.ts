@@ -4,6 +4,10 @@ import { EmployeeService } from '../services/employee.service';
 import { CommonModule } from '@angular/common';
 import { Employee } from '../models/employee.model';
 
+interface OtpResponse {
+  status: 'success' | 'error';
+  message: string;
+}
 @Component({
   selector: 'app-employee-details',
   imports: [CommonModule],
@@ -49,4 +53,26 @@ export class EmployeeDetailsComponent implements OnInit {
   updateEmployee(id: number): void {
     this.router.navigate(['update-employee', id]);
   }
+
+  deleteEmployee(id: number): void {
+    const confirmDelete = confirm("Are you sure you want to delete this employee?");
+    if (!confirmDelete) {
+      return;
+    }
+    this.employeeService.deleteEmployeeByid(id).subscribe({
+      next: (res: Employee) => {
+        console.log("Employee deleted:", res);
+        alert(`Employee ${res.name} deleted successfully!`);
+        this.gotoList();
+      },
+      error: (err) => {
+        if (err.status === 404) {
+          alert("Employee not found or already deleted.");
+        } else {
+          console.error('Error deleting employee:', err);
+        }
+      }
+    });
+  }
+
 }

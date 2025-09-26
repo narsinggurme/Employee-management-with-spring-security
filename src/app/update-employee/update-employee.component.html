@@ -1,83 +1,67 @@
 <div class="update-employee-wrapper">
-    <div class="update-employee-card">
+    <div class="update-employee-card animate__animated animate__fadeIn">
         <h3 class="update-title text-center mb-4">Update Employee Details</h3>
 
-        <form (ngSubmit)="onSubmit()" [formGroup]="empForm">
-            <!-- ID -->
-            <div class="form-group mb-3">
-                <label class="fw-bold">ID:</label>
-                <input class="form-control" formControlName="id" readonly>
+        <form (ngSubmit)="onSubmit()" [formGroup]="empForm" class="update-form row g-3">
+
+            <!-- Left Column -->
+            <div class="col-md-6">
+                <div class="form-group mb-3">
+                    <label class="fw-bold floating-label">ID</label>
+                    <input type="text" class="form-control" formControlName="id" readonly>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="fw-bold floating-label">Full Name</label>
+                    <input type="text" class="form-control" formControlName="name">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="fw-bold floating-label">Email</label>
+                    <input type="email" class="form-control" formControlName="email">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="fw-bold floating-label">Phone</label>
+                    <input type="text" class="form-control" formControlName="phone">
+                </div>
             </div>
 
-            <!-- Name -->
-            <div class="form-group mb-3">
-                <label class="fw-bold">Full Name:</label>
-                <input class="form-control" formControlName="name">
-                <span class="text-danger" *ngIf="empForm.get('name')?.touched && empForm.get('name')?.invalid">
-                    Name is required (min 3 chars).
-                </span>
+            <!-- Right Column -->
+            <div class="col-md-6">
+                <div class="form-group mb-3">
+                    <label class="fw-bold floating-label">Department</label>
+                    <input type="text" class="form-control" formControlName="dept">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="fw-bold floating-label">Designation</label>
+                    <input type="text" class="form-control" formControlName="designation">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="fw-bold floating-label">Age</label>
+                    <input type="number" class="form-control" formControlName="age">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="fw-bold floating-label">Salary</label>
+                    <input type="number" class="form-control" formControlName="salary">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="fw-bold floating-label">Joining Date</label>
+                    <input type="date" class="form-control" formControlName="joiningDate">
+                </div>
             </div>
 
-            <!-- Email -->
-            <div class="form-group mb-3">
-                <label class="fw-bold">Email Id:</label>
-                <input type="email" class="form-control" formControlName="email">
-                <span class="text-danger" *ngIf="empForm.get('email')?.touched && empForm.get('email')?.invalid">
-                    Valid email is required.
-                </span>
+            <!-- Submit -->
+            <div class="col-12 text-center mt-3">
+                <button class="btn submit-btn btn-gradient-hover" type="submit" [disabled]="empForm.invalid">
+                    Update Employee
+                </button>
             </div>
 
-            <!-- Phone -->
-            <div class="form-group mb-3">
-                <label class="fw-bold">Phone No:</label>
-                <input type="text" class="form-control" formControlName="phone">
-                <span class="text-danger" *ngIf="empForm.get('phone')?.touched && empForm.get('phone')?.invalid">
-                    10-digit phone number required.
-                </span>
-            </div>
-
-            <!-- Department -->
-            <div class="form-group mb-4">
-                <label class="fw-bold">Department:</label>
-                <input type="text" class="form-control" formControlName="dept">
-                <span class="text-danger" *ngIf="empForm.get('dept')?.touched && empForm.get('dept')?.invalid">
-                    Department is required.
-                </span>
-            </div>
-            <div class="form-group mb-4">
-                <label class="fw-bold">Designation:</label>
-                <input type="text" class="form-control" formControlName="designation">
-                <span class="text-danger"
-                    *ngIf="empForm.get('designation')?.touched && empForm.get('designation')?.invalid">
-                    Department is required.
-                </span>
-            </div>
-            <div class="form-group mb-4">
-                <label class="fw-bold">Age:</label>
-                <input type="text" class="form-control" formControlName="age">
-                <span class="text-danger" *ngIf="empForm.get('age')?.touched && empForm.get('age')?.invalid">
-                    Department is required.
-                </span>
-            </div>
-            <div class="form-group mb-4">
-                <label class="fw-bold">Salary:</label>
-                <input type="text" class="form-control" formControlName="salary">
-                <span class="text-danger" *ngIf="empForm.get('salary')?.touched && empForm.get('salary')?.invalid">
-                    Department is required.
-                </span>
-            </div>
-            <div class="form-group mb-4">
-                <label class="fw-bold">Joining Date:</label>
-                <input type="text" class="form-control" formControlName="joiningDate">
-                <span class="text-danger"
-                    *ngIf="empForm.get('joiningDate')?.touched && empForm.get('joiningDate')?.invalid">
-                    Department is required.
-                </span>
-            </div>
-
-            <div class="text-center">
-                <button class="btn submit-btn" type="submit" [disabled]="empForm.invalid">Submit</button>
-            </div>
         </form>
     </div>
 </div>
