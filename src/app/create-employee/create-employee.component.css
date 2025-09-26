@@ -1,0 +1,39 @@
+.employee-form {
+    background: #fff;
+    border-radius: 20px;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.text-gradient {
+    background: linear-gradient(to right, #d54814, #6d0f12);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.btn-gradient {
+    background: linear-gradient(to right, #754747, #8c0d95);
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    border-radius: 10px;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-gradient:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(79, 172, 254, 0.4);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

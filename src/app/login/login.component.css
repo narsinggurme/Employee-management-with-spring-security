@@ -1,0 +1,100 @@
+.login-hero {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d") no-repeat center center/cover;
+}
+
+.login-info {
+    flex: 1;
+    text-align: center;
+    animation: fadeInLeft 1s ease-in-out;
+}
+
+.login-info h1 {
+    font-size: 2.5rem;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 20px;
+}
+
+.login-info p {
+    font-size: 1.2rem;
+    font-weight: 400;
+    max-width: 500px;
+}
+
+.quote-animation span {
+    display: inline-block;
+    font-size: 1.25rem;
+    font-weight: 500;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card {
+    background: #fff;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    max-width: 380px;
+    width: 100%;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    animation: fadeInRight 1s ease-in-out;
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.btn-gradient {
+    background: linear-gradient(90deg, #FF6B6B, #FFD93D);
+    border: none;
+    border-radius: 0.75rem;
+    color: #fff;
+    padding: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.btn-gradient:hover {
+    background: linear-gradient(90deg, #6A4C93, #FF6B6B);
+    transform: translateY(-2px);
+}

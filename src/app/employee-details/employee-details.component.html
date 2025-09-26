@@ -1,0 +1,32 @@
+<h3 class="employee-title text-center mt-4 mb-3">👤 Employee Details</h3>
+
+<div class="card employee-card mx-auto shadow-lg animate-card">
+    <div class="card-body">
+
+        <!-- Employee Info Grid -->
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="info-item"><span class="label">🆔 ID:</span> {{ employee.id }}</div>
+                <div class="info-item"><span class="label">👨‍💼 Name:</span> {{ employee.name }}</div>
+                <div class="info-item"><span class="label">📧 Email:</span> {{ employee.email }}</div>
+                <div class="info-item"><span class="label">📱 Phone:</span> {{ employee.phone }}</div>
+                <div class="info-item"><span class="label">🎂 Age:</span> {{ employee.age }}</div>
+            </div>
+            <div class="col-md-6">
+                <div class="info-item"><span class="label">🏢 Department:</span> {{ employee.dept }}</div>
+                <div class="info-item"><span class="label">💼 Designation:</span> {{ employee.designation }}</div>
+                <div class="info-item"><span class="label">💰 Salary:</span> {{ employee.salary | currency:'INR' }}
+                </div>
+                <div class="info-item"><span class="label">📅 Joining Date:</span> {{ employee.joiningDate }}</div>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="text-center mt-5 d-flex justify-content-center gap-3 flex-wrap">
+            <button class="btn back-btn px-4 fw-bold" (click)="gotoList()">⬅ Back</button>
+            <button class="btn update-btn px-4 fw-bold" (click)="updateEmployee(id)"> ✏️ Update</button>
+            <button class="btn delete-btn px-4 fw-bold" (click)="deleteEmployee(id)">🗑 Delete</button>
+        </div>
+
+    </div>
+</div>

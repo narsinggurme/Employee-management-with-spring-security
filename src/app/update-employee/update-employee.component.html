@@ -1,0 +1,67 @@
+<div class="update-employee-wrapper">
+    <div class="update-employee-card animate__animated animate__fadeIn">
+        <h3 class="update-title text-center mb-4">Update Employee Details</h3>
+
+        <form (ngSubmit)="onSubmit()" [formGroup]="empForm" class="update-form row g-3">
+
+            <!-- Left Column -->
+            <div class="col-md-6">
+                <div class="form-group mb-3">
+                    <label class="fw-bold floating-label">ID</label>
+                    <input type="text" class="form-control" formControlName="id" readonly>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="fw-bold floating-label">Full Name</label>
+                    <input type="text" class="form-control" formControlName="name">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="fw-bold floating-label">Email</label>
+                    <input type="email" class="form-control" formControlName="email">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="fw-bold floating-label">Phone</label>
+                    <input type="text" class="form-control" formControlName="phone">
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="col-md-6">
+                <div class="form-group mb-3">
+                    <label class="fw-bold floating-label">Department</label>
+                    <input type="text" class="form-control" formControlName="dept">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="fw-bold floating-label">Designation</label>
+                    <input type="text" class="form-control" formControlName="designation">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="fw-bold floating-label">Age</label>
+                    <input type="number" class="form-control" formControlName="age">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="fw-bold floating-label">Salary</label>
+                    <input type="number" class="form-control" formControlName="salary">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="fw-bold floating-label">Joining Date</label>
+                    <input type="date" class="form-control" formControlName="joiningDate">
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <div class="col-12 text-center mt-3">
+                <button class="btn submit-btn btn-gradient-hover" type="submit" [disabled]="empForm.invalid">
+                    Update Employee
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
