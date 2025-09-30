@@ -60,7 +60,7 @@ export class ForgotPasswordComponent implements OnInit {
       const username = this.forgotForm.get('username')?.value;
       this.forgotService.sendResetLink(username).subscribe({
         next: res => {
-          console.log("api respnose:" + res.message);
+          console.log("api respnose:" + res);
           setTimeout(() => {
             this.loading = false;
             alert(res.message || 'Reset link sent to your email!');
