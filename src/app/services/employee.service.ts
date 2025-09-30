@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Employee } from '../models/employee.model';
+import { OtpResponse } from '../models/otp-response';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,11 @@ export class EmployeeService {
   getEmployees(): Observable<Employee[]> {
     return this.http.get<Employee[]>(this.baseUrl);
   }
-  createEmployee(employee: Employee): Observable<object> {
-    return this.http.post(this.postUrl, employee);
+  // createEmployee(employee: Employee): Observable<object> {
+  //   return this.http.post<OtpResponse>(this.postUrl, employee);
+  // }
+  createEmployee(employee: Employee): Observable<OtpResponse> {
+    return this.http.post<OtpResponse>(this.postUrl, employee);
   }
 
   getEmployeeByid(id: number): Observable<Employee> {

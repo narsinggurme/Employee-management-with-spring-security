@@ -3,6 +3,10 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { EmployeeService } from '../services/employee.service';
+interface OtpResponse {
+  status: 'success' | 'error';
+  message: String;
+}
 
 @Component({
   selector: 'app-create-employee',
@@ -36,16 +40,35 @@ export class CreateEmployeeComponent implements OnInit {
   onSubmit(): void {
     if (this.profileForm.valid) {
       this.employeeService.createEmployee(this.profileForm.value).subscribe({
-        next: (data) => {
-          console.log('Saved:', data);
+        next: (response) => {
+          // Only called if HTTP 200–299
+          console.log("API Response: " + response)
+          alert('New employee added successfully.');
           this.router.navigate(['/employees']);
         },
         error: (err) => {
-          console.error('Error saving employee:', err);
+          if (err.status === 409) {
+            const errorBody = err.error; // your backend JSON
+            if (errorBody.email) {
+              // this.profileForm.get('email')?.setErrors({ exists: errorBody.message });
+              console.log("API Response: " + err.error)
+            }
+            if (errorBody.phone) {
+              // this.profileForm.get('phone')?.setErrors({ exists: errorBody.message });
+              console.log("API Response: " + err.error)
+            }
+            alert(errorBody.message);
+          } else {
+            console.error('Unexpected error:', err);
+          }
         }
       });
     } else {
       this.profileForm.markAllAsTouched();
     }
+  }
+
+  goHome(): void {
+    this.router.navigate(['/home']);
   }
 }

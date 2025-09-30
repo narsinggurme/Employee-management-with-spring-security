@@ -61,7 +61,6 @@ export class SignupComponent {
     const email = this.signupForm.value.email;
     this.http.post<OtpResponse>(this.sentEmailOtpUrl, { email }).subscribe({
       next: (response) => {
-        this.emailOtpSent = true;
         console.log('Send OTP Response:', response);
         if (response.status === 'success') {
           this.emailOtpSent = true;
