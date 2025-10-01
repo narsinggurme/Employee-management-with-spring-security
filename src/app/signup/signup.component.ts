@@ -78,7 +78,7 @@ export class SignupComponent {
   }
   verifyOtp() {
     const phone = this.signupForm.value.phone;
-    const otp = this.signupForm.value.emailotp;
+    const otp = this.signupForm.value.otp;
     this.http.post(this.verifyOtpUrl, { phone, otp }).subscribe({
       next: (response) => {
         this.phoneOtpVer = true;

@@ -74,6 +74,17 @@ export class AuthService {
   getRefreshToken(): string | null {
     return localStorage.getItem('refresh_token');
   }
+  getRole(): string | null {
+    return localStorage.getItem('role');
+  }
+
+  isAdmin(): boolean {
+    return this.getRole() === 'ADMIN';
+  }
+
+  isNormalUser(): boolean {
+    return this.getRole() === 'NORMAL';
+  }
 
   restoreSession(): void {
     const token = localStorage.getItem('access_token');

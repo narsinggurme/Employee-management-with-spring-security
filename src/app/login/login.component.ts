@@ -75,10 +75,18 @@ export class LoginComponent implements OnInit {
           if (res.accessToken) {
             localStorage.setItem('access_token', res.accessToken);
             localStorage.setItem('username', res.username);
+            localStorage.setItem('role', res.role);  // store role
           }
-          console.log("login success and username set");
-          this.router.navigate(['/employees']);
 
+          console.log("login success and username set" + res.role);
+
+          if (res.role === 'ADMIN') {
+            this.router.navigate(['/employees']);
+          } else if (res.role === 'NORMAL') {
+            this.router.navigate(['/profile']);
+          } else {
+            this.router.navigate(['/']); // fallback
+          }
         },
         error: (err) => {
           console.error("Login failed", err);
@@ -95,12 +103,10 @@ export class LoginComponent implements OnInit {
       });
     }
   }
-
   openForgotPassword() {
     const dialogRef = this.dialog.open(ForgotPasswordComponent, {
       width: '400px'
     });
-
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
