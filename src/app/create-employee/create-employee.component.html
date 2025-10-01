@@ -73,11 +73,17 @@
         <div class="col-md-6 mb-3">
           <label class="form-label fw-semibold">Joining Date</label>
           <input type="date" class="form-control" formControlName="joiningDate">
-          <small *ngIf="profileForm.get('joiningDate')?.touched && profileForm.get('joiningDate')?.invalid"
+
+          <small *ngIf="profileForm.get('joiningDate')?.touched && profileForm.get('joiningDate')?.errors?.['required']"
             class="text-danger">
             Joining Date is required.
           </small>
+
+          <small *ngIf="profileForm.get('joiningDate')?.errors?.['futureDate']" class="text-danger">
+            Joining Date cannot be in the future.
+          </small>
         </div>
+
       </div>
 
       <!-- Buttons -->

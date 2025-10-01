@@ -52,6 +52,14 @@
                 <div class="form-group mb-3">
                     <label class="fw-bold floating-label">Joining Date</label>
                     <input type="date" class="form-control" formControlName="joiningDate">
+                    <small
+                        *ngIf="empForm.get('joiningDate')?.errors?.['required'] && empForm.get('joiningDate')?.touched"
+                        class="text-danger">
+                        Joining Date is required.
+                    </small>
+                    <small *ngIf="empForm.get('joiningDate')?.errors?.['futureDate']" class="text-danger">
+                        Joining Date cannot be in the future.
+                    </small>
                 </div>
             </div>
 

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { EmployeeService } from '../services/employee.service';
 import { Employee } from '../models/employee.model';
+import { noFutureDateValidator } from '../validators/date-validators';
 
 @Component({
   selector: 'app-update-employee',
@@ -25,7 +26,7 @@ export class UpdateEmployeeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Initialize form with empty/default values
+    // Initialize form
     this.empForm = this.fb.group({
       id: [null],
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -35,28 +36,32 @@ export class UpdateEmployeeComponent implements OnInit {
       designation: ['', [Validators.required]],
       age: [null, [Validators.required]],
       salary: [null, [Validators.required]],
-      joiningDate: [null, [Validators.required]]
+      joiningDate: [null, [Validators.required, noFutureDateValidator]]
     });
 
-    // Get ID from route
+    // Get employee ID from route
     this.id = this.route.snapshot.params['id'];
 
-    // Fetch employee and patch form
+    // Fetch employee data
     this.employeeService.getEmployeeByid(this.id).subscribe({
       next: (data: Employee) => {
         this.employee = data;
-        this.empForm.patchValue(this.employee); // ✅ patch form instead of recreating FormGroup
+
+        // Convert joiningDate to YYYY-MM-DD for date input
+        if (this.employee.joiningDate) {
+          const jd = new Date(this.employee.joiningDate);
+          this.employee.joiningDate = jd.toISOString().split('T')[0];
+        }
+
+        this.empForm.patchValue(this.employee);
       },
-      error: (err) => {
-        console.error('Error fetching employee:', err);
-      }
+      error: (err) => console.error('Error fetching employee:', err)
     });
   }
 
   onSubmit() {
     if (this.empForm.valid) {
       const updatedEmp: Employee = { ...this.empForm.getRawValue(), id: this.id };
-
       this.employeeService.updateEmployee(this.id, updatedEmp).subscribe({
         next: () => this.gotoEmployeeList(),
         error: (err) => console.error('Error updating employee:', err)

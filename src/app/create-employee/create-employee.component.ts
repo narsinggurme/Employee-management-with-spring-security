@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl, ValidationErrors } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { EmployeeService } from '../services/employee.service';
+import { noFutureDateValidator } from '../validators/date-validators';
+
 interface OtpResponse {
   status: 'success' | 'error';
-  message: String;
+  message: string;
 }
 
 @Component({
@@ -13,7 +15,7 @@ interface OtpResponse {
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './create-employee.component.html',
-  styleUrl: './create-employee.component.css'
+  styleUrls: ['./create-employee.component.css']
 })
 export class CreateEmployeeComponent implements OnInit {
   profileForm!: FormGroup;
@@ -33,7 +35,7 @@ export class CreateEmployeeComponent implements OnInit {
       designation: ['', Validators.required],
       salary: [0, Validators.required],
       age: [null, Validators.required],
-      joiningDate: [null, Validators.required]
+      joiningDate: [null, [Validators.required, noFutureDateValidator]]
     });
   }
 
@@ -41,22 +43,13 @@ export class CreateEmployeeComponent implements OnInit {
     if (this.profileForm.valid) {
       this.employeeService.createEmployee(this.profileForm.value).subscribe({
         next: (response) => {
-          // Only called if HTTP 200–299
-          console.log("API Response: " + response)
+          console.log("API Response: " + response);
           alert('New employee added successfully.');
           this.router.navigate(['/employees']);
         },
         error: (err) => {
           if (err.status === 409) {
-            const errorBody = err.error; // your backend JSON
-            if (errorBody.email) {
-              // this.profileForm.get('email')?.setErrors({ exists: errorBody.message });
-              console.log("API Response: " + err.error)
-            }
-            if (errorBody.phone) {
-              // this.profileForm.get('phone')?.setErrors({ exists: errorBody.message });
-              console.log("API Response: " + err.error)
-            }
+            const errorBody = err.error;
             alert(errorBody.message);
           } else {
             console.error('Unexpected error:', err);

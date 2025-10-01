@@ -5,7 +5,7 @@ export interface Employee {
     phone: string;
     dept: string;
     designation: string;
-    salary: number;
     age: number;
-    joiningDate: Date;
+    salary: number;
+    joiningDate: string | Date;
 }
