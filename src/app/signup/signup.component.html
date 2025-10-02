@@ -1,5 +1,4 @@
-<div class="signup-container d-flex ">
-    <!-- Left Section (Image / Quote) -->
+<div class="signup-container d-flex">
     <div class="signup-left d-none d-md-flex align-items-center justify-content-center">
         <div class="text-center text-white px-4">
             <h1 class="fw-bold">Join Our EMS</h1>
@@ -7,69 +6,56 @@
         </div>
     </div>
 
-    <!-- Right Section (Signup Form) -->
     <div class="signup-right d-flex align-items-center justify-content-center w-100">
         <div class="card shadow-lg border-0 rounded-4 p-4 signup-card">
             <h2 class="text-center mb-4 fw-bold text-gradient">Create Account</h2>
 
             <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-                <!-- Username -->
                 <div class="mb-3">
                     <label for="username" class="form-label fw-semibold">Username</label>
                     <input type="text" id="username" formControlName="username" class="form-control"
                         placeholder="Enter your username" autocomplete="username" />
-                    <div *ngIf="
-              signupForm.get('username')?.touched &&
-              signupForm.get('username')?.invalid
-            " class="text-danger mt-1">
-                        Username is required
-                    </div>
+                    <div *ngIf="signupForm.get('username')?.touched && signupForm.get('username')?.invalid"
+                        class="text-danger mt-1">Username is required</div>
                 </div>
 
-                <!-- Password -->
                 <div class="mb-3">
                     <label for="password" class="form-label fw-semibold">Password</label>
                     <input type="password" id="password" formControlName="password" class="form-control"
                         placeholder="Enter your password" autocomplete="password" />
-                    <div *ngIf="
-              signupForm.get('password')?.touched &&
-              signupForm.get('password')?.invalid
-            " class="text-danger mt-1">
-                        Password is required
-                    </div>
+                    <div *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.invalid"
+                        class="text-danger mt-1">Password is required</div>
                 </div>
 
-                <!-- Email -->
                 <div class="mb-3">
                     <label for="email" class="form-label fw-semibold">Email</label>
                     <input type="email" id="email" class="form-control" formControlName="email"
                         placeholder="Enter email" autocomplete="email" />
-                    <div *ngIf="
-              signupForm.get('email')?.touched &&
-              signupForm.get('email')?.invalid
-            " class="text-danger mt-1">
-                        Email is required
-                    </div>
+                    <div *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid"
+                        class="text-danger mt-1">Email is required</div>
                 </div>
+
                 <div class="mb-3">
-                    <button type="button" class="btn btn-outline-primary w-100" (click)=" senOtpEmail()"
-                        [disabled]="!signupForm.get('email')?.valid || emailOtpSent">
+                    <button type="button" class="btn btn-outline-primary w-100" (click)="sendEmailOtp()"
+                        [disabled]="!signupForm.get('email')?.valid || emailOtpSent || loading">
                         {{ emailOtpSent ? 'OTP Sent' : 'Send OTP' }}
                     </button>
                 </div>
+
                 <div class="mb-3" *ngIf="emailOtpSent">
-                    <label for="otp" class="form-label fw-semibold">OTP</label>
+                    <label for="emailotp" class="form-label fw-semibold">OTP</label>
                     <input type="text" id="emailotp" formControlName="emailotp" class="form-control"
                         placeholder="Enter OTP" />
-                    <button type="button" class="btn btn-outline-success w-100 mt-2" (click)="veryfyEmailOtp()"
-                        [disabled]="signupForm.get('emailotp')?.invalid">
+                    <button type="button" class="btn btn-outline-success w-100 mt-2" (click)="verifyEmailOtp()"
+                        [disabled]="signupForm.get('emailotp')?.invalid || loading">
                         Verify OTP
                     </button>
-
                 </div>
 
+                <div *ngIf="loading" class="dot-loader mt-3 d-flex justify-content-center">
+                    <span></span><span></span><span></span><span></span>
+                </div>
 
-                <!-- Role -->
                 <div class="mb-3">
                     <label for="roles" class="form-label fw-semibold">Role</label>
                     <select id="roles" formControlName="roles" class="form-select">
@@ -83,36 +69,33 @@
                     <input type="text" id="phone" formControlName="phone" class="form-control"
                         placeholder="Enter your phone number" autocomplete="tel" />
                     <div *ngIf="signupForm.get('phone')?.touched && signupForm.get('phone')?.invalid"
-                        class="text-danger mt-1">
-                        Phone is required
-                    </div>
+                        class="text-danger mt-1">Phone is required</div>
                 </div>
+
                 <div class="mb-3">
                     <button type="button" class="btn btn-outline-primary w-100" (click)="sendOtp()"
-                        [disabled]="!signupForm.get('phone')?.valid || phoneotpSent">
-                        {{ phoneotpSent ? 'OTP Sent' : 'Send OTP' }}
+                        [disabled]="!signupForm.get('phone')?.valid || phoneOtpSent || loading">
+                        {{ phoneOtpSent ? 'OTP Sent' : 'Send OTP' }}
                     </button>
                 </div>
-                <div class="mb-3" *ngIf="phoneotpSent">
+
+                <div class="mb-3" *ngIf="phoneOtpSent">
                     <label for="otp" class="form-label fw-semibold">OTP</label>
                     <input type="text" id="otp" formControlName="otp" class="form-control" placeholder="Enter OTP" />
                     <button type="button" class="btn btn-outline-success w-100 mt-2" (click)="verifyOtp()"
-                        [disabled]="signupForm.get('otp')?.invalid">
+                        [disabled]="signupForm.get('otp')?.invalid || loading">
                         Verify OTP
                     </button>
                 </div>
 
-                <!-- Submit -->
-                <button type="submit" class="btn btn-gradient w-100 fw-semibold" [disabled]="signupForm.invalid">
+                <button type="submit" class="btn btn-gradient w-100 fw-semibold"
+                    [disabled]="signupForm.invalid || !phoneOtpVerified">
                     Sign Up
                 </button>
 
-                <!-- Login link -->
                 <div class="text-center mt-3">
                     Already have an account?
-                    <a routerLink="/login" class="text-decoration-none fw-semibold text-gradient">
-                        Login here
-                    </a>
+                    <a routerLink="/login" class="text-decoration-none fw-semibold text-gradient">Login here</a>
                 </div>
             </form>
         </div>

@@ -5,7 +5,7 @@
                 <a routerLink="home" routerLinkActive="active" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
-                <a routerLink="#" routerLinkActive="active" class="nav-link">About</a>
+                <a routerLink="about" routerLinkActive="active" class="nav-link">About</a>
             </li>
             <li class="nav-item" *ngIf="authservice.isLoggedIn() && authservice.isAdmin()">
                 <a routerLink="employees" routerLinkActive="active" class="nav-link">Employee List</a>

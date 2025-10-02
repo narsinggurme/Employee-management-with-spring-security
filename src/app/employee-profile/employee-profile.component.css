@@ -1,4 +1,3 @@
-/* Profile Card */
 .profile-card {
     background: #fff;
     border-radius: 20px;
@@ -9,12 +8,10 @@
     transform: translateY(-8px) scale(1.02);
 }
 
-/* Profile Image */
 .profile-img {
     width: 160px;
     height: 160px;
     border: 6px solid #ff6f00;
-    /* Bhagwa */
     transition: transform 0.4s ease-in-out, border-color 0.3s;
 }
 
@@ -23,19 +20,15 @@
     border-color: #e65100;
 }
 
-/* Name & Role */
 .profile-name {
     color: #e65100;
-    /* Deep Bhagwa */
 }
 
 .profile-role {
     color: #ff7043;
-    /* Soft Orange */
     font-size: 1.1rem;
 }
 
-/* Quotes */
 .quote-text {
     font-style: italic;
     font-size: 1.1rem;
@@ -56,7 +49,6 @@
     }
 }
 
-/* Custom Bhagwa Button */
 .btn-bhagwa {
     background: linear-gradient(45deg, #ff6f00, #ff8f00);
     color: #fff;
@@ -70,7 +62,6 @@
     transform: scale(1.05);
 }
 
-/* Outline Bhagwa Button */
 .btn-outline-bhagwa {
     border: 2px solid #e65100;
     color: #e65100;
@@ -85,13 +76,11 @@
     transform: scale(1.05);
 }
 
-/* Prevent email collapse */
 .word-wrap {
     word-break: break-word;
     white-space: normal;
 }
 
-/* Quote style */
 .quote-text {
     font-style: italic;
     font-size: 1.2rem;

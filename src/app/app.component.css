@@ -1,16 +1,14 @@
-/* === Global Theme === */
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #FFF3E2, #FFE5EC, #F9E0FF);
+    background: linear-gradient(135deg, #FFF3E0, #FFE5B4, #FFDDA0);
     color: #2D2D2D;
     margin: 0;
     padding: 0;
     min-height: 100vh;
 }
 
-/* === Navbar === */
 .navbar {
-    background: linear-gradient(90deg, #FF6B6B, #FF8787, #FFD93D);
+    background: linear-gradient(90deg, #FF6F00, #FFA000, #FFD54F);
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -22,13 +20,11 @@ body {
 
 .navbar .nav-link:hover,
 .navbar .active {
-    color: #6A4C93 !important;
-    /* purple hover effect */
+    color: #6A1B9A !important;
 }
 
-/* === Buttons === */
 .btn-custom {
-    background: linear-gradient(90deg, #FF6B6B, #FFD93D);
+    background: linear-gradient(90deg, #FF6F00, #FFD54F);
     color: #fff;
     border: none;
     transition: all 0.3s ease;
@@ -37,11 +33,10 @@ body {
 }
 
 .btn-custom:hover {
-    background: linear-gradient(90deg, #6A4C93, #FF6B6B);
+    background: linear-gradient(90deg, #FFA000, #FF6F00);
     transform: translateY(-2px) scale(1.03);
 }
 
-/* Override Bootstrap outline buttons */
 .btn-outline-light {
     border: 2px solid #fff;
     color: #fff;
@@ -50,12 +45,11 @@ body {
 
 .btn-outline-light:hover {
     background: #fff;
-    color: #FF6B6B;
+    color: #FF6F00;
 }
 
-/* === Footer === */
 .footer {
-    background: linear-gradient(90deg, #FF6B6B, #6A4C93);
+    background: linear-gradient(90deg, #FF6F00, #FFD54F);
     color: #fff;
     font-size: 14px;
     letter-spacing: 0.5px;

@@ -2,7 +2,6 @@
     width: 100%;
 }
 
-/* Left Section */
 .signup-left {
     flex: 1;
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
@@ -11,13 +10,11 @@
     padding: 2rem;
 }
 
-/* Right Section */
 .signup-right {
     flex: 1;
     background: linear-gradient(135deg, #ff6a88, #ffcc70);
 }
 
-/* Card Styling */
 .signup-card {
     width: 100%;
     max-width: 420px;
@@ -26,7 +23,6 @@
     animation: fadeInUp 0.8s ease-in-out;
 }
 
-/* Gradient button */
 .btn-gradient {
     background: linear-gradient(to right, #ff6a88, #ffcc70);
     border: none;
@@ -52,7 +48,6 @@
     -moz-text-fill-color: transparent;
 }
 
-/* Animation */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -62,5 +57,58 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+.loader-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.375rem;
+    z-index: 10;
+}
+
+.dot-loader span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin: 3px;
+    background: #FF6F00;
+    border-radius: 50%;
+    animation: dot 1.4s infinite ease-in-out both;
+}
+
+.dot-loader span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.dot-loader span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.dot-loader span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.dot-loader span:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+@keyframes dot {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0);
+    }
+
+    40% {
+        transform: scale(1);
     }
 }

@@ -10,12 +10,14 @@ import { HomeComponent } from './home/home.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { EmployeeProfileComponent } from './employee-profile/employee-profile.component';
 import { adminGuard } from './guards/role.guard';
+import { AboutComponent } from './about/about.component';
 
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'home', component: HomeComponent },
     { path: 'signup', component: SignupComponent },
+    { path: 'about', component: AboutComponent },
     { path: 'profile', component: EmployeeProfileComponent, canActivate: [authGuard] },
     { path: 'forgot-password', component: ForgotPasswordComponent },
     { path: 'employees', component: EmployeeListComponent, canActivate: [adminGuard] },

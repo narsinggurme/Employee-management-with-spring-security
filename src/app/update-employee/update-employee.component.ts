@@ -26,7 +26,6 @@ export class UpdateEmployeeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Initialize form
     this.empForm = this.fb.group({
       id: [null],
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -39,15 +38,12 @@ export class UpdateEmployeeComponent implements OnInit {
       joiningDate: [null, [Validators.required, noFutureDateValidator]]
     });
 
-    // Get employee ID from route
     this.id = this.route.snapshot.params['id'];
 
-    // Fetch employee data
     this.employeeService.getEmployeeByid(this.id).subscribe({
       next: (data: Employee) => {
         this.employee = data;
 
-        // Convert joiningDate to YYYY-MM-DD for date input
         if (this.employee.joiningDate) {
           const jd = new Date(this.employee.joiningDate);
           this.employee.joiningDate = jd.toISOString().split('T')[0];

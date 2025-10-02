@@ -3,7 +3,6 @@
 <div class="card employee-card mx-auto shadow-lg animate-card">
     <div class="card-body">
 
-        <!-- Employee Info Grid -->
         <div class="row g-4">
             <div class="col-md-6">
                 <div class="info-item"><span class="label">🆔 ID:</span> {{ employee.id }}</div>
@@ -21,7 +20,6 @@
             </div>
         </div>
 
-        <!-- Buttons -->
         <div class="text-center mt-5 d-flex justify-content-center gap-3 flex-wrap">
             <button class="btn back-btn px-4 fw-bold" (click)="gotoList()">⬅ Back</button>
             <button class="btn update-btn px-4 fw-bold" (click)="updateEmployee(id)"> ✏️ Update</button>
