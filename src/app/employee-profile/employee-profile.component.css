@@ -1,11 +1,16 @@
 .profile-card {
     background: #fff;
-    border-radius: 20px;
-    transition: transform 0.3s ease-in-out;
+    border-radius: 25px;
+    padding: 40px 30px;
+    max-width: 500px;
+    margin: auto;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .profile-card:hover {
-    transform: translateY(-8px) scale(1.02);
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
 .profile-img {
@@ -22,6 +27,7 @@
 
 .profile-name {
     color: #e65100;
+    font-size: 1.8rem;
 }
 
 .profile-role {
@@ -31,49 +37,59 @@
 
 .quote-text {
     font-style: italic;
-    font-size: 1.1rem;
-    color: #ff6f00;
-    animation: fadeIn 2s ease-in-out;
-    min-height: 30px;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #e65100;
+    min-height: 70px;
+    max-height: 70px;
+    overflow: hidden;
+    transition: opacity 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
+hr {
+    border-color: #ffe0b2;
+}
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+h5,
+h6 {
+    color: #e65100;
+}
+
+.text-muted {
+    color: #757575 !important;
 }
 
 .btn-bhagwa {
     background: linear-gradient(45deg, #ff6f00, #ff8f00);
     color: #fff;
     border-radius: 30px;
-    padding: 10px 25px;
+    padding: 10px 30px;
+    font-weight: 600;
     transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .btn-bhagwa:hover {
     background: linear-gradient(45deg, #e65100, #ff6f00);
-    transform: scale(1.05);
+    transform: scale(1.08);
 }
 
 .btn-outline-bhagwa {
     border: 2px solid #e65100;
     color: #e65100;
     border-radius: 30px;
-    padding: 10px 25px;
+    padding: 10px 30px;
+    font-weight: 600;
     transition: all 0.3s ease-in-out;
 }
 
 .btn-outline-bhagwa:hover {
     background: #ff7043;
     color: #fff;
-    transform: scale(1.05);
+    transform: scale(1.08);
 }
 
 .word-wrap {
@@ -81,11 +97,15 @@
     white-space: normal;
 }
 
-.quote-text {
-    font-style: italic;
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: #e65100;
-    min-height: 35px;
-    transition: opacity 0.5s ease-in-out;
+.row.text-center>div {
+    border-radius: 15px;
+    padding: 15px 10px;
+    background: #fff3e0;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.row.text-center>div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
