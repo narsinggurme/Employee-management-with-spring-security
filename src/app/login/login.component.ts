@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit {
           if (res.accessToken) {
             localStorage.setItem('access_token', res.accessToken);
             localStorage.setItem('username', res.username);
-            localStorage.setItem('role', res.role);  // store role
+            localStorage.setItem('role', res.role);
           }
 
           console.log("login success and username set" + res.role);
@@ -85,7 +85,7 @@ export class LoginComponent implements OnInit {
           } else if (res.role === 'NORMAL') {
             this.router.navigate(['/profile']);
           } else {
-            this.router.navigate(['/']); // fallback
+            this.router.navigate(['/']);
           }
         },
         error: (err) => {

@@ -1,0 +1,102 @@
+/* Profile Card */
+.profile-card {
+    background: #fff;
+    border-radius: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.profile-card:hover {
+    transform: translateY(-8px) scale(1.02);
+}
+
+/* Profile Image */
+.profile-img {
+    width: 160px;
+    height: 160px;
+    border: 6px solid #ff6f00;
+    /* Bhagwa */
+    transition: transform 0.4s ease-in-out, border-color 0.3s;
+}
+
+.profile-img:hover {
+    transform: rotate(5deg) scale(1.1);
+    border-color: #e65100;
+}
+
+/* Name & Role */
+.profile-name {
+    color: #e65100;
+    /* Deep Bhagwa */
+}
+
+.profile-role {
+    color: #ff7043;
+    /* Soft Orange */
+    font-size: 1.1rem;
+}
+
+/* Quotes */
+.quote-text {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #ff6f00;
+    animation: fadeIn 2s ease-in-out;
+    min-height: 30px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Custom Bhagwa Button */
+.btn-bhagwa {
+    background: linear-gradient(45deg, #ff6f00, #ff8f00);
+    color: #fff;
+    border-radius: 30px;
+    padding: 10px 25px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-bhagwa:hover {
+    background: linear-gradient(45deg, #e65100, #ff6f00);
+    transform: scale(1.05);
+}
+
+/* Outline Bhagwa Button */
+.btn-outline-bhagwa {
+    border: 2px solid #e65100;
+    color: #e65100;
+    border-radius: 30px;
+    padding: 10px 25px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-outline-bhagwa:hover {
+    background: #ff7043;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Prevent email collapse */
+.word-wrap {
+    word-break: break-word;
+    white-space: normal;
+}
+
+/* Quote style */
+.quote-text {
+    font-style: italic;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #e65100;
+    min-height: 35px;
+    transition: opacity 0.5s ease-in-out;
+}

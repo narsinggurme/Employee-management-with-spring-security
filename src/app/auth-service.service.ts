@@ -60,6 +60,7 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
+    this.loggedIn === true;
     return !!this.getAccessToken();
   }
 

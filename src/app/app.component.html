@@ -7,10 +7,10 @@
             <li class="nav-item">
                 <a routerLink="#" routerLinkActive="active" class="nav-link">About</a>
             </li>
-            <li class="nav-item" *ngIf="authservice.isLoggedIn()">
+            <li class="nav-item" *ngIf="authservice.isLoggedIn() && authservice.isAdmin()">
                 <a routerLink="employees" routerLinkActive="active" class="nav-link">Employee List</a>
             </li>
-            <li class="nav-item" *ngIf="authservice.isLoggedIn()">
+            <li class="nav-item" *ngIf="authservice.isLoggedIn() && authservice.isAdmin()">
                 <a routerLink="create-employee" routerLinkActive="active" class="nav-link">Add Employee</a>
             </li>
         </ul>
