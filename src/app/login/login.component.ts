@@ -73,6 +73,7 @@ export class LoginComponent implements OnInit {
           console.log("Login success", res);
 
           if (res.accessToken) {
+            console.log("access token in login: " + res.accessToken);
             localStorage.setItem('access_token', res.accessToken);
             localStorage.setItem('username', res.username);
             localStorage.setItem('role', res.role);

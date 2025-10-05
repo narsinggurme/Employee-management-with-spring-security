@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import { environment } from '../environments/environment';
+import { endpoints } from '../environments/environment';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private loginUrl = environment.loginUrl;
-  private refreshUrl = environment.refreshUrl;
-  private logoutUrl = environment.logoutUrl;
+  private loginUrl = endpoints.loginUrl;
+  private refreshUrl = endpoints.refreshUrl;
+  private logoutUrl = endpoints.logoutUrl;
 
   private loggedIn = false;
   private currentUser: string | null = null;
@@ -28,6 +28,7 @@ export class AuthService {
     return this.http.post<any>(this.loginUrl, { username, password }).pipe(
       tap(res => {
         if (res.accessToken && res.refreshToken) {
+          console.log("Aceess taoken: " + res.access_token);
           localStorage.setItem('access_token', res.accessToken);
           localStorage.setItem('username', username);
 

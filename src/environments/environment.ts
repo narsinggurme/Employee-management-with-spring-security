@@ -1,15 +1,20 @@
 export const environment = {
     production: false,
-    apiUrl: "http://localhost:8081/api/v1",
-    loginUrl: "http://localhost:8081/api/v1/auth/login",
-    baseUrl: "http://localhost:8081/api/v1/employees",
-    postUrl: "http://localhost:8081/api/v1/empl",
-    refreshUrl: "http://localhost:8081/api/v1/auth/refresh",
-    logoutUrl: "http://localhost:8081/api/v1/auth/logout",
-    forgotPassword: "http://localhost:8081/api/v1/password/forgot-password",
-    signUpUrl: "http://localhost:8081/api/v1/auth/signup",
-    sendOtpUrl: "http://localhost:8081/api/v1/otp/send-phone",
-    verifyOtpUrl: "http://localhost:8081/api/v1/otp/verify-phone",
-    emailSentOtpUrl: "http://localhost:8081/api/v1/otp/send-email",
-    emailverifyOtpUrl: "http://localhost:8081/api/v1/otp/verify-email"
+    url: "http://localhost:8081/"
+    // url: "https://emsbynarsing.up.railway.app/"
+};
+
+export const endpoints = {
+    apiUrl: environment.url + "api/v1",
+    loginUrl: environment.url + "api/v1/auth/login",
+    baseUrl: environment.url + "api/v1/employees",
+    postUrl: environment.url + "api/v1/empl",
+    refreshUrl: environment.url + "api/v1/auth/refresh",
+    logoutUrl: environment.url + "api/v1/auth/logout",
+    forgotPassword: environment.url + "api/v1/password/forgot-password",
+    signUpUrl: environment.url + "api/v1/auth/signup",
+    sendOtpUrl: environment.url + "api/v1/otp/send-phone",
+    verifyOtpUrl: environment.url + "api/v1/otp/verify-phone",
+    emailSentOtpUrl: environment.url + "api/v1/otp/send-email",
+    emailverifyOtpUrl: environment.url + "api/v1/otp/verify-email"
 };

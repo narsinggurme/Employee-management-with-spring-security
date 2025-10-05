@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
+import { endpoints } from '../../environments/environment';
 import { Employee } from '../models/employee.model';
 import { OtpResponse } from '../models/otp-response';
 
@@ -9,8 +9,8 @@ import { OtpResponse } from '../models/otp-response';
   providedIn: 'root'
 })
 export class EmployeeService {
-  private baseUrl = environment.baseUrl;
-  private postUrl = environment.postUrl;
+  private baseUrl = endpoints.baseUrl;
+  private postUrl = endpoints.postUrl;
 
   constructor(private http: HttpClient) { }
 

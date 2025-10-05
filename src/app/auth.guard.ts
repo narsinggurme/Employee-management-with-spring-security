@@ -14,10 +14,13 @@ export const authGuard: CanActivateFn = (route, state) => {
   const role = localStorage.getItem('role');
   const expectedRole = route.data?.['role'];
 
+  console.log("Expected role: " + expectedRole)
+
   if (expectedRole && role !== expectedRole) {
     if (role === 'NORMAL') {
       router.navigate(['/profile']);
     } else {
+      console.log("inside else..........");
       router.navigate(['/login']);
     }
     return false;

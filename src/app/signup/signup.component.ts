@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { environment } from '../../environments/environment';
+import { endpoints, environment } from '../../environments/environment';
 
 interface OtpResponse {
   status: 'success' | 'error';
@@ -25,11 +25,11 @@ export class SignupComponent {
   emailOtpVerified = false;
   loading = false;
 
-  private signupUrl = environment.signUpUrl;
-  private sendOtpUrl = environment.sendOtpUrl;
-  private verifyOtpUrl = environment.verifyOtpUrl;
-  private sendEmailOtpUrl = environment.emailSentOtpUrl;
-  private verifyEmailOtpUrl = environment.emailverifyOtpUrl;
+  private signupUrl = endpoints.signUpUrl;
+  private sendOtpUrl = endpoints.sendOtpUrl;
+  private verifyOtpUrl = endpoints.verifyOtpUrl;
+  private sendEmailOtpUrl = endpoints.emailSentOtpUrl;
+  private verifyEmailOtpUrl = endpoints.emailverifyOtpUrl;
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
     this.signupForm = this.fb.group({
