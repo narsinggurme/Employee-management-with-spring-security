@@ -1,63 +1,152 @@
-<<<<<<< HEAD
-# EmployeeWeb
+# 🧑‍💼 Employee Management System (EMS) — Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.12.
+This project is the **frontend application** for the **Employee Management System**, developed using **Angular CLI** version **19.2.12**.  
+It provides a secure and user-friendly interface for managing employees with features such as authentication, authorization, email verification, password reset, and complete CRUD operations.
 
-## Development server
+---
+
+## ⚙️ Technologies Used
+
+- **Angular 19**
+- **TypeScript**
+- **HTML5, CSS3, Bootstrap**
+- **RxJS**
+- **JWT Authentication**
+- **RESTful API (Spring Boot Backend Integration)**
+
+---
+
+## 🚀 Key Features
+
+### 🔐 Authentication & Security
+- **Login with JWT Authentication**
+- **Signup with Email Verification** — confirmation email sent to the registered user
+- **Forgot Password** — reset link sent to the registered email ID
+- **Auth Guards** — restrict unauthorized users from accessing protected routes
+- **Auth Interceptor** — automatically adds JWT token to secured HTTP requests
+
+### 👥 Employee Management (CRUD)
+- Add, view, update, and delete employees
+- Dynamic search and filtering
+- Pagination support
+- Responsive UI with form validations
+
+### 🧩 Architecture Highlights
+- **Routing Module** — manages route-based navigation
+- **Environment Files** — all API paths and constants stored in one place (`environment.ts` and `environment.prod.ts`)
+- **Services for Reusable Logic:**
+  - `AuthService` — handles login, signup, forgot password, and email verification
+  - `EmployeeService` — manages CRUD operations
+  - `NotificationService` — displays success/error messages
+- **Guards & Interceptors** — for route-level security and authentication handling
+
+---
+
+## 📁 Project Structure
+
+employee-web/
+│
+├── src/
+│ ├── app/
+│ │ ├── auth/
+│ │ │ ├── login/
+│ │ │ ├── signup/
+│ │ │ ├── forgot-password/
+│ │ │ ├── auth.guard.ts
+│ │ │ └── auth.interceptor.ts
+│ │ ├── employee/
+│ │ │ ├── add-employee/
+│ │ │ ├── employee-list/
+│ │ │ ├── update-employee/
+│ │ │ └── employee.service.ts
+│ │ ├── services/
+│ │ │ ├── auth.service.ts
+│ │ │ ├── notification.service.ts
+│ │ │ └── token-storage.service.ts
+│ │ ├── environment/
+│ │ │ ├── environment.ts
+│ │ │ └── environment.prod.ts
+│ │ ├── app-routing.module.ts
+│ │ └── app.module.ts
+│ └── assets/
+│
+└── README.md
+
+
+---
+
+## 💻 Development Server
 
 To start a local development server, run:
 
 ```bash
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+Once the server is running, open your browser and navigate to:
+👉 http://localhost:4200/
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+The application will automatically reload whenever you modify any source files.
 
-```bash
-ng generate component component-name
-```
+🏗️ Building
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+To build the project for production:
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
 ng build
-```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
+This will compile and optimize your project, storing the build artifacts in the dist/ directory.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+🧪 Running Unit Tests
 
-```bash
+To execute unit tests with the Karma
+ test runner:
+
 ng test
-```
 
-## Running end-to-end tests
+🧩 Running End-to-End Tests
 
 For end-to-end (e2e) testing, run:
 
-```bash
 ng e2e
-```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
-## Additional Resources
+(Angular CLI doesn’t come with a built-in e2e framework; you can configure your own.)
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-=======
-# Employee-management-with-spring-security
->>>>>>> 000b58a9f3783fd97847ebd729779decd4e403b7
+🌍 Environment Configuration Example
+
+environment.ts
+
+export const environment = {
+  production: false,
+  apiBaseUrl: 'http://localhost:8080/api'
+};
+
+
+environment.prod.ts
+
+export const environment = {
+  production: true,
+  apiBaseUrl: 'https://your-deployed-backend-url/api'
+};
+
+📚 Additional Resources
+
+For more information on using the Angular CLI and its commands, visit the
+👉 Angular CLI Overview and Command Reference
+
+🏁 Summary
+
+The Employee Management System (EMS) frontend is a secure, modular, and scalable Angular application that includes:
+
+JWT Authentication & Role-based Authorization
+
+Real Email Verification & Password Reset
+
+Auth Guards & Interceptors for Security
+
+Centralized API Management via Environment Files
+
+Full Employee CRUD Operations
+
+This application is designed to integrate seamlessly with the Spring Boot backend, delivering a complete, enterprise-grade Employee Management Solution.
