@@ -82,3 +82,80 @@ employee-web/
 │   └── assets/
 │
 └── README.md
+
+💻 Development Setup
+
+To start a local development server, run:
+
+ng serve
+
+
+Then open your browser and navigate to:
+👉 http://localhost:4200/
+
+The app will automatically reload whenever you modify the source files.
+
+🏗️ Build for Production
+
+Build the project using:
+
+ng build
+
+
+This command compiles and optimizes your project for production.
+The build artifacts will be stored in the dist/ directory.
+
+🧪 Running Tests
+✅ Unit Tests
+
+Run unit tests using Karma
+:
+
+ng test
+
+🧩 End-to-End Tests
+
+For E2E testing (optional), run:
+
+ng e2e
+
+
+Angular CLI does not come with an e2e framework by default — you can configure one (like Cypress or Protractor).
+
+🌍 Environment Configuration
+
+src/environments/environment.ts
+
+export const environment = {
+  production: false,
+  apiBaseUrl: 'http://localhost:8080/api'
+};
+
+
+src/environments/environment.prod.ts
+
+export const environment = {
+  production: true,
+  apiBaseUrl: 'https://your-deployed-backend-url/api'
+};
+
+📚 Useful Resources
+
+Angular CLI Documentation
+
+RxJS Official Docs
+
+Bootstrap Components
+
+🏁 Summary
+
+The Employee Management System (EMS) frontend is a modern, modular, and secure Angular application built to handle all employee-related operations.
+It integrates seamlessly with the Spring Boot backend, offering:
+
+✅ Secure Authentication (JWT + Guards + Interceptors)
+📧 Real Email Verification & Password Reset
+⚙️ Full Employee CRUD Operations
+🌐 Centralized Environment Configurations
+💎 Scalable & Responsive UI
+
+<p align="center">✨ Designed & Developed with ❤️ using Angular ✨</p> ```
