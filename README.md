@@ -1,48 +1,58 @@
-# 🧑‍💼 Employee Management System (EMS) — Frontend
+<h1 align="center">🧑‍💼 Employee Management System (EMS) — Frontend</h1>
 
-This project is the **frontend application** for the **Employee Management System**, developed using **Angular CLI** version **19.2.12**.  
-It provides a secure and user-friendly interface for managing employees with features such as authentication, authorization, email verification, password reset, and complete CRUD operations.
+<p align="center">
+  <b>Modern, secure, and scalable employee management application built with Angular.</b><br>
+  Developed using <a href="https://github.com/angular/angular-cli">Angular CLI</a> v19.2.12 — integrated with Spring Boot backend for RESTful APIs.
+</p>
+
+---
+
+## 🌟 Overview
+
+The **Employee Management System (EMS)** is a full-featured Angular application that enables seamless management of employee records with **JWT authentication**, **role-based access**, **email verification**, and **password reset functionality**.  
+It provides an elegant UI, modular architecture, and real-time form validation for smooth enterprise-level operations.
 
 ---
 
 ## ⚙️ Technologies Used
 
-- **Angular 19**
-- **TypeScript**
-- **HTML5, CSS3, Bootstrap**
-- **RxJS**
-- **JWT Authentication**
-- **RESTful API (Spring Boot Backend Integration)**
+| Category | Technologies |
+|-----------|--------------|
+| **Frontend Framework** | Angular 19, TypeScript |
+| **UI / Styling** | HTML5, CSS3, Bootstrap |
+| **State Management & Utilities** | RxJS |
+| **Security** | JWT Authentication, Auth Guards, Interceptors |
+| **Backend Integration** | RESTful API (Spring Boot) |
 
 ---
 
 ## 🚀 Key Features
 
 ### 🔐 Authentication & Security
-- **Login with JWT Authentication**
-- **Signup with Email Verification** — confirmation email sent to the registered user
-- **Forgot Password** — reset link sent to the registered email ID
-- **Auth Guards** — restrict unauthorized users from accessing protected routes
-- **Auth Interceptor** — automatically adds JWT token to secured HTTP requests
+- Secure **JWT-based login** and logout  
+- **Email verification** during signup (confirmation sent to user email)  
+- **Forgot Password** — sends reset link to registered email  
+- **Auth Guards** — restricts unauthorized access to routes  
+- **Auth Interceptor** — attaches JWT tokens to HTTP requests automatically  
 
-### 👥 Employee Management (CRUD)
-- Add, view, update, and delete employees  
-- Dynamic search and filtering  
-- Pagination support  
-- Responsive UI with form validations  
+### 👨‍💼 Employee Management (CRUD)
+- Add, View, Update, and Delete Employees  
+- Responsive and mobile-friendly interface  
+- Dynamic search, sorting, and pagination  
+- Real-time validation and notification system  
 
 ### 🧩 Architecture Highlights
-- **Routing Module** — manages route-based navigation  
-- **Environment Files** — all API paths and constants stored in one place (`environment.ts` and `environment.prod.ts`)  
-- **Reusable Services:**
-  - `AuthService` — handles login, signup, forgot password, and email verification  
-  - `EmployeeService` — manages CRUD operations  
-  - `NotificationService` — displays success/error messages  
-- **Guards & Interceptors** — for route-level security and authentication handling  
+- **Modular Routing System** — clean navigation with lazy-loaded modules  
+- **Environment Configuration** — centralized API paths in `environment.ts`  
+- **Reusable Services** for separation of concerns:
+  - `AuthService` — Authentication, Email Verification, Password Reset  
+  - `EmployeeService` — Employee CRUD APIs  
+  - `NotificationService` — Success/Error messages  
+- **Guards & Interceptors** — maintain route security and authentication state  
 
 ---
 
-## 📁 Project Structure
+## 🗂️ Project Structure
 
 ```bash
 employee-web/
